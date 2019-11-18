@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+#RewriteRule ^(.*)/$ /$1 [L,R]
+
+RewriteRule ^$ index.php [L]
+RewriteRule ^product$ index.php?content=product [L]
+RewriteRule ^product/(.*)$ index.php?content=product-detail&id=$1 [L]
+RewriteRule ^best-seller$ index.php?content=best-seller [L]
+RewriteRule ^contact$ index.php?content=contact [L]
+RewriteRule ^cart$ index.php?content=cart [L]
+
+
+
+
+RewriteRule ^tentang-kami$ index.php?content=tentang-kami [L]
+
+RewriteRule ^program/(.*)$ index.php?content=program&id=$1 [L]
+RewriteRule ^program$ index.php?content=program-all [L]
+
+RewriteRule ^acara/(.*)$ index.php?content=acara&id=$1 [L]
+RewriteRule ^acara$ index.php?content=acara-all [L]
+
+RewriteRule ^blog/(.*)$ index.php?content=blog&id=$1 [L]
+RewriteRule ^blog$ index.php?content=blog-all [L]
+
+RewriteRule ^donasi$ donasi.php [L]
+RewriteRule ^terimakasih$ terimakasih.php [L]
+RewriteRule ^auth$ auth.php [L]
+RewriteRule ^logout$ logout.php [L]
+
+RewriteRule ^sukarelawan$ index.php?content=sukarelawan/index [L]
+RewriteRule ^sukarelawan/dashboard$ index.php?content=sukarelawan/dashboard [L]
+RewriteRule ^sukarelawan/profile$ index.php?content=sukarelawan/profile [L]
+RewriteRule ^sukarelawan/profile/edit$ index.php?content=sukarelawan/profile-edit [L]
+RewriteRule ^sukarelawan/ubah-password$ index.php?content=sukarelawan/ubah-password [L]
+
+
+</IfModule>

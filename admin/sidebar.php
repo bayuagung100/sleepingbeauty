@@ -56,30 +56,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="?content=acara" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Acara</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="?content=blog" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Blog</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="?content=sukarelawan" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Sukarelawan</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="?content=tentang-kami" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Tentang Kami</p>
-                    </a>
-                </li>
+                
             </ul>
         </li>
         <li class="nav-item">

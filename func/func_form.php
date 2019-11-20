@@ -62,6 +62,87 @@ function buat_inline($label, $nama, $nilai, $place, $tipe = "text")
         
     ';
 }
+function buat_inline_multi_select_size($label, $nama, $list, $nilai, $place)
+{ 	
+	echo '	
+            <label for="' . $nama . '" >' . $label . '</label>
+			<select name="' . $nama . '" class="select2" multiple="multiple" data-placeholder="' . $place . '" style="width: 100%;">';
+
+			if (strpos($nilai, ',') == true) {
+				$ex = explode(",", $nilai);
+				foreach ($ex as $key) {
+					global $mysqli;
+					$query = $mysqli->query("SELECT * FROM size_product WHERE id='$key' ");
+					$data = $query->fetch_array();
+					echo '<option value=' . $key . ' selected>' . $data['size_name'] . '</option>';
+				}
+				foreach ($list as $ls) {
+					echo '<option value=' . $ls['val'] . '>' . $ls['cap'] . '</option>';
+				}
+			} else {
+				foreach ($list as $ls) {
+					$select = $ls['val'] == $nilai ? 'selected' : '';
+					echo '<option value=' . $ls['val'] . ' ' . $select . '>' . $ls['cap'] . '</option>';
+				}
+			}
+			
+	echo '	</select>';
+}
+
+function buat_inline_multi_select_color($label, $nama, $list, $nilai, $place)
+{ 	
+	echo '	
+            <label for="' . $nama . '" >' . $label . '</label>
+			<select name="' . $nama . '" class="select2" multiple="multiple" data-placeholder="' . $place . '" style="width: 100%;">';
+
+			if (strpos($nilai, ',') == true) {
+				$ex = explode(",", $nilai);
+				foreach ($ex as $key) {
+					global $mysqli;
+					$query = $mysqli->query("SELECT * FROM color_product WHERE id='$key' ");
+					$data = $query->fetch_array();
+					echo '<option value=' . $key . ' selected>' . $data['color_name'] . '</option>';
+				}
+				foreach ($list as $ls) {
+					echo '<option value=' . $ls['val'] . '>' . $ls['cap'] . '</option>';
+				}
+			} else {
+				foreach ($list as $ls) {
+					$select = $ls['val'] == $nilai ? 'selected' : '';
+					echo '<option value=' . $ls['val'] . ' ' . $select . '>' . $ls['cap'] . '</option>';
+				}
+			}
+			
+	echo '	</select>';
+}
+
+function buat_inline_multi_select_category($label, $nama, $list, $nilai, $place)
+{ 	
+	echo '	
+            <label for="' . $nama . '" >' . $label . '</label>
+			<select name="' . $nama . '" class="select2" multiple="multiple" data-placeholder="' . $place . '" style="width: 100%;">';
+
+			if (strpos($nilai, ',') == true) {
+				$ex = explode(",", $nilai);
+				foreach ($ex as $key) {
+					global $mysqli;
+					$query = $mysqli->query("SELECT * FROM category_product WHERE id='$key' ");
+					$data = $query->fetch_array();
+					echo '<option value=' . $key . ' selected>' . $data['category_name'] . '</option>';
+				}
+				foreach ($list as $ls) {
+					echo '<option value=' . $ls['val'] . '>' . $ls['cap'] . '</option>';
+				}
+			} else {
+				foreach ($list as $ls) {
+					$select = $ls['val'] == $nilai ? 'selected' : '';
+					echo '<option value=' . $ls['val'] . ' ' . $select . '>' . $ls['cap'] . '</option>';
+				}
+			}
+			
+	echo '	</select>';
+}
+
 function buat_inline_multi_select($label, $nama, $list, $nilai, $place)
 {
 	echo '	
@@ -86,6 +167,7 @@ function buat_inline_multi_select($label, $nama, $list, $nilai, $place)
 			
 	echo '	</select>';
 }
+
 function buat_inline_select($label, $nama, $list, $nilai)
 {
 	echo '

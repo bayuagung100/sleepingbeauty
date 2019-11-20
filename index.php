@@ -7,7 +7,7 @@ include "func/func_date.php";
 
 $content  = (isset($_GET['content'])) ? $_GET['content'] : "home";
 $kosong   = true;
-$page     = array('home','product','product-detail','best-seller','contact','cart');
+$page     = array('home','product','product-detail','category','category-detail','best-seller','contact','cart');
 foreach($page as $pg){
   if($content == $pg and $kosong){
     

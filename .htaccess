@@ -6,6 +6,8 @@ RewriteEngine on
 RewriteRule ^$ index.php [L]
 RewriteRule ^product$ index.php?content=product [L]
 RewriteRule ^product/(.*)$ index.php?content=product-detail&id=$1 [L]
+RewriteRule ^category$ index.php?content=category [L]
+RewriteRule ^category/(.*)$ index.php?content=category-detail&id=$1 [L]
 RewriteRule ^best-seller$ index.php?content=best-seller [L]
 RewriteRule ^contact$ index.php?content=contact [L]
 RewriteRule ^cart$ index.php?content=cart [L]

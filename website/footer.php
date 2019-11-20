@@ -8,29 +8,23 @@
                 </h4>
 
                 <ul>
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
-                        </a>
-                    </li>
+                    <?php
+                    $Category = $mysqli->query("SELECT * FROM category_product");
+                    while ($data = $Category->fetch_array()) {
+                        $id = $data['id'];
+                        $url = $data['category_url'];
+                        $name = $data['category_name'];
+                        $icon = $data['category_icon'];
 
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
-                        </a>
-                    </li>
+                        echo '
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            ' . $name . '
+                            </a>
+                        </li>
+                        ';
+                    }
+                    ?>
                 </ul>
             </div>
 
@@ -72,7 +66,8 @@
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                    Any questions? Let us know in store at ...
+                    or call us on (+62) 812xxxxxxxx
                 </p>
 
                 <div class="p-t-27">
@@ -111,7 +106,7 @@
         </div>
 
         <div class="p-t-40">
-            <div class="flex-c-m flex-w p-b-18">
+            <!-- <div class="flex-c-m flex-w p-b-18">
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
                 </a>
@@ -131,15 +126,14 @@
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
                 </a>
-            </div>
+            </div> -->
 
             <p class="stext-107 cl6 txt-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <?php echo $set['title']; ?>
                 Copyright &copy;
                 <script>
                     document.write(new Date().getFullYear());
-                </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </script> All rights reserved
 
             </p>
         </div>
@@ -449,17 +443,74 @@ while ($mdata = $modal_query->fetch_array()) {
     while ($jsmdata = $jsmquery->fetch_array()) {
         $jsmid = $jsmdata['id'];
         ?>
-        $('.js-show-modal<?php echo $jsmid;?>').on('click', function(e) {
+        $('.js-show-modal<?php echo $jsmid; ?>').on('click', function(e) {
             e.preventDefault();
-            $('.js-modal<?php echo $jsmid;?>').addClass('show-modal');
+            $('.js-modal<?php echo $jsmid; ?>').addClass('show-modal');
         });
 
-        $('.js-hide-modal<?php echo $jsmid;?>').on('click', function() {
-            $('.js-modal<?php echo $jsmid;?>').removeClass('show-modal');
+        $('.js-hide-modal<?php echo $jsmid; ?>').on('click', function() {
+            $('.js-modal<?php echo $jsmid; ?>').removeClass('show-modal');
         });
     <?php
     }
     ?>
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.more_product', function() {
+            var ID = $(this).attr('id');
+            $('.more_product').hide();
+            $('.loading_product').show();
+            $.ajax({
+                type: 'POST',
+                url: 'more-product.php',
+                data: 'id=' + ID,
+                success: function(html) {
+                    $('#more_product_main' + ID).remove();
+                    $('#post_product').append(html);
+                }
+            });
+        });
+
+        // $(document).on('click', '.more_category', function() {
+        //     var ID = $(this).attr('id');
+        //     var NAME = $(this).attr('name');
+        //     console.log(NAME);
+        //     $('.more_category').hide();
+        //     $('.loading_category').show();
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: 'more-category.php',
+        //         data: {
+        //             id: ID,
+        //             name: NAME
+        //         },
+        //         success: function(html) {
+        //             $('#more_category_main' + ID).remove();
+        //             $('#post_category').append(html);
+        //         }
+        //     });
+        // });
+
+        // $(window).scroll(function() {
+        //     var lastID = $('.loading_category').attr('lastID');
+        //     if (($(window).scrollTop() == $(document).height() - $(window).height()) && (lastID != 0)) {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: 'more-category.php',
+        //             data: 'id=' + lastID,
+        //             beforeSend: function() {
+        //                 $('.loading_category').show();
+        //             },
+        //             success: function(html) {
+        //                 $('.loading_category').remove();
+        //                 $('#post_category').append(html);
+        //             }
+        //         });
+        //     }
+        // });
+    });
 </script>
 
 <!-- JavaScript -->

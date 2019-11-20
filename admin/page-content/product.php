@@ -109,7 +109,7 @@ switch ($show) {
                         while($k = $size->fetch_array()){
                             $list[] = array('val'=>$k['id'], 'cap'=>$k['size_name']);
                         }
-                        buat_inline_multi_select("Size Product (*bisa lebih dari 1) <a href='index.php?content=size-product'>buat size baru</a>"
+                        buat_inline_multi_select_size("Size Product (*bisa lebih dari 1) <a href='index.php?content=size-product'>buat size baru</a>"
                         , "product_size[]", $list, $data['product_size'],"Select a size");
                     buat_inlinetutup_col();
                 buat_inlinetutup();
@@ -121,7 +121,7 @@ switch ($show) {
                         while($k = $color->fetch_array()){
                             $list[] = array('val'=>$k['id'], 'cap'=>$k['color_name']);
                         }
-                        buat_inline_multi_select("Color Product (*bisa lebih dari 1) <a href='index.php?content=color-product'>buat color baru</a>"
+                        buat_inline_multi_select_color("Color Product (*bisa lebih dari 1) <a href='index.php?content=color-product'>buat color baru</a>"
                         , "product_color[]", $list, $data['product_color'],"Select a color");
                     buat_inlinetutup_col();
                     buat_inlinebuka_col(6);
@@ -131,7 +131,7 @@ switch ($show) {
                         while($k = $category->fetch_array()){
                             $list[] = array('val'=>$k['id'], 'cap'=>$k['category_name']);
                         }
-                        buat_inline_multi_select("Category Product (*bisa lebih dari 1) <a href='index.php?content=category-product'>buat category baru</a>"
+                        buat_inline_multi_select_category("Category Product (*bisa lebih dari 1) <a href='index.php?content=category-product'>buat category baru</a>"
                         , "product_category[]", $list, $data['product_category'],"Select a category");
                     buat_inlinetutup_col();
                 buat_inlinetutup();

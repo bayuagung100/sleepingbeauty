@@ -13,9 +13,42 @@ $ukuran = $data['product_size'];
 $warna = $data['product_color'];
 $bahan = $data['product_material'];
 $kategori = $data['product_category'];
-$gambar1 = $set['url'] . "images/source/" . $data['product_image1'];
-$gambar2 = $set['url'] . "images/source/" . $data['product_image2'];
-$gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
+$pic1 = $data['product_image1'];
+$pic2 = $data['product_image2'];
+$pic3 = $data['product_image3'];
+$pic4 = $data['product_image4'];
+$pic5 = $data['product_image5'];
+$pic6 = $data['product_image6'];
+if($pic1!=""){
+	$gambar1 = $set['url'] . "images/source/" . $pic1;
+} else {
+	$gambar1 = $set['url'] . "images/icons/no-image.png";
+}
+if($pic2!=""){
+	$gambar2 = $set['url'] . "images/source/" . $pic2;
+} else {
+	$gambar2 = $set['url'] . "images/icons/no-image.png";
+}
+if($pic3!=""){
+	$gambar3 = $set['url'] . "images/source/" . $pic3;
+} else {
+	$gambar3 = $set['url'] . "images/icons/no-image.png";
+}
+if($pic4!=""){
+	$gambar4 = $set['url'] . "images/source/" . $pic4;
+} else {
+	$gambar4 = $set['url'] . "images/icons/no-image.png";
+}
+if($pic5!=""){
+	$gambar5 = $set['url'] . "images/source/" . $pic5;
+} else {
+	$gambar5 = $set['url'] . "images/icons/no-image.png";
+}
+if($pic6!=""){
+	$gambar6 = $set['url'] . "images/source/" . $pic6;
+} else {
+	$gambar6 = $set['url'] . "images/icons/no-image.png";
+}
 ?>
 
 <!-- breadcrumb -->
@@ -44,35 +77,92 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 						<div class="slick3 gallery-lb">
-							<div class="item-slick3" data-thumb="<?php echo $gambar1; ?>">
-								<div class="wrap-pic-w pos-relative">
-									<img src="<?php echo $gambar1; ?>" alt="<?php echo $nama; ?>">
+							<?php
+							if($gambar1!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar1.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar1.'" alt="'.$nama.'">
 
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?php echo $gambar1; ?>">
-										<i class="fa fa-expand"></i>
-									</a>
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar1.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
 								</div>
-							</div>
+								';
+							}
 
-							<div class="item-slick3" data-thumb="<?php echo $gambar2; ?>">
-								<div class="wrap-pic-w pos-relative">
-									<img src="<?php echo $gambar2; ?>" alt="<?php echo $nama; ?>">
+							if($gambar2!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar2.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar2.'" alt="'.$nama.'">
 
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?php echo $gambar2; ?>">
-										<i class="fa fa-expand"></i>
-									</a>
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar2.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
 								</div>
-							</div>
+								';
+							}
 
-							<div class="item-slick3" data-thumb="<?php echo $gambar3; ?>">
-								<div class="wrap-pic-w pos-relative">
-									<img src="<?php echo $gambar3; ?>" alt="<?php echo $nama; ?>">
+							if($gambar3!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar3.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar3.'" alt="'.$nama.'">
 
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?php echo $gambar3; ?>">
-										<i class="fa fa-expand"></i>
-									</a>
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar3.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
 								</div>
-							</div>
+								';
+							}
+
+							if($gambar4!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar4.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar4.'" alt="'.$nama.'">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar4.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+								';
+							}
+
+							if($gambar5!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar5.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar5.'" alt="'.$nama.'">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar5.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+								';
+							}
+
+							if($gambar6!=""){
+								echo'
+								<div class="item-slick3" data-thumb="'.$gambar6.'">
+									<div class="wrap-pic-w pos-relative">
+										<img src="'.$gambar6.'" alt="'.$nama.'">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="'.$gambar6.'">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+								';
+							}
+
+							?>
 						</div>
 					</div>
 				</div>
@@ -81,7 +171,7 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
 					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-						<?php echo $nama; ?>
+						<span id="product"><?php echo $nama; ?></span>
 					</h4>
 
 					<span class="mtext-106 cl2">
@@ -109,13 +199,14 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 							';
 						}
 					?>
-					
 
 					<p class="stext-102 cl3 p-t-23">
 						<?php echo $desc; ?>
 					</p>
 
 					<!--  -->
+					<!-- <form method="get" action="<?php echo $set["url"];?>shop/add-to-cart.php"> -->
+					<input id="ip" type="hidden" name="id" value="<?php echo $id;?>">
 					<div class="p-t-33">
 						<div class="flex-w flex-r-m p-b-10">
 							<div class="size-203 flex-c-m respon6">
@@ -124,7 +215,7 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="size" required>
+									<select id="size" class="js-select2" name="size" required>
 										<option value="">Pilih Ukuran</option>
 										<?php
 										$ex = explode(",", $ukuran);
@@ -154,7 +245,7 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="color" required>
+									<select id="color" class="js-select2" name="color" required>
 										<option value="">Pilih Warna</option>
 										<?php
 										$ex = explode(",", $warna);
@@ -190,7 +281,7 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 										';
 									} else {
 										echo'
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1" min="1" max="'.$stok.'">
+										<input id="qty" class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1" min="1" max="'.$stok.'">
 										';
 									}
 									?>
@@ -222,6 +313,7 @@ $gambar3 = $set['url'] . "images/source/" . $data['product_image3'];
 						</div>
 					</div>
 
+					<!-- </form> -->
 				</div>
 			</div>
 		</div>

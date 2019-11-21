@@ -75,7 +75,8 @@ switch ($show) {
             $data = array("id" => "", "product_name" => "", "product_description" => "", "product_stock" => ""
             , "product_price" => "", "product_weight" => "", "product_size" => "", "product_color" => ""
             , "product_material" => "", "product_category" => "", "product_image1" => "", "product_image2" => ""
-            , "product_image3" => "");
+            , "product_image3" => "", "product_image4" => "", "product_image5" => ""
+            , "product_image6" => "");
             $aksi     = "Tambah";
         }
         echo '
@@ -149,13 +150,24 @@ switch ($show) {
                 buat_inlinetutup();
                 buat_inlinebuka();
                     buat_inlinebuka_col(4);
-                        buat_imagepicker("Gambar 1", "product_image1", $data['product_image1'],12);
+                        buat_imagepicker("Gambar 1 (*posisi portrait)", "product_image1", $data['product_image1'],12);
                     buat_inlinetutup_col();
                     buat_inlinebuka_col(4);
                         buat_imagepicker("Gambar 2", "product_image2", $data['product_image2'],12);
                     buat_inlinetutup_col();
                     buat_inlinebuka_col(4);
                         buat_imagepicker("Gambar 3", "product_image3", $data['product_image3'],12);
+                    buat_inlinetutup_col();
+                buat_inlinetutup();
+                buat_inlinebuka();
+                    buat_inlinebuka_col(4);
+                        buat_imagepicker("Gambar 4", "product_image4", $data['product_image4'],12);
+                    buat_inlinetutup_col();
+                    buat_inlinebuka_col(4);
+                        buat_imagepicker("Gambar 5", "product_image5", $data['product_image5'],12);
+                    buat_inlinetutup_col();
+                    buat_inlinebuka_col(4);
+                        buat_imagepicker("Gambar 6", "product_image6", $data['product_image6'],12);
                     buat_inlinetutup_col();
                 buat_inlinetutup();
                 buat_tinymce("Deskripsi Product", "product_description", $data['product_description'], 'Enter deskripsi product', 'richtext');
@@ -181,6 +193,9 @@ switch ($show) {
         $gambar1	= addslashes($_POST['product_image1']);
         $gambar2	= addslashes($_POST['product_image2']);
         $gambar3	= addslashes($_POST['product_image3']);
+        $gambar4	= addslashes($_POST['product_image4']);
+        $gambar5	= addslashes($_POST['product_image5']);
+        $gambar6	= addslashes($_POST['product_image6']);
         $deskripsi	= addslashes($_POST['product_description']);
                
         if ($_POST['aksi']=="tambah") {
@@ -199,6 +214,9 @@ switch ($show) {
                 product_image1,
                 product_image2,
                 product_image3,
+                product_image4,
+                product_image5,
+                product_image6,
                 product_slide
             )
             VALUES
@@ -216,6 +234,9 @@ switch ($show) {
                 '$gambar1',
                 '$gambar2',
                 '$gambar3',
+                '$gambar4',
+                '$gambar5',
+                '$gambar6',
                 'N'
             )
             ");
@@ -234,7 +255,10 @@ switch ($show) {
             product_category = '$kategori',
             product_image1 = '$gambar1',
             product_image2 = '$gambar2',
-            product_image3 = '$gambar3'
+            product_image3 = '$gambar3',
+            product_image4 = '$gambar4',
+            product_image5 = '$gambar5',
+            product_image6 = '$gambar6'
             WHERE id='$_POST[id]'
             ");
         }

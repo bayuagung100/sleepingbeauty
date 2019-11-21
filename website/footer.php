@@ -166,6 +166,42 @@ while ($mdata = $modal_query->fetch_array()) {
     $gambar1 = $mdata['product_image1'];
     $gambar2 = $mdata['product_image2'];
     $gambar3 = $mdata['product_image3'];
+    $pic1 = $mdata['product_image1'];
+    $pic2 = $mdata['product_image2'];
+    $pic3 = $mdata['product_image3'];
+    $pic4 = $mdata['product_image4'];
+    $pic5 = $mdata['product_image5'];
+    $pic6 = $mdata['product_image6'];
+    if ($pic1 != "") {
+        $gambar1 = $set['url'] . "images/source/" . $pic1;
+    } else {
+        $gambar1 = $set['url'] . "images/icons/no-image.png";
+    }
+    if ($pic2 != "") {
+        $gambar2 = $set['url'] . "images/source/" . $pic2;
+    } else {
+        $gambar2 = $set['url'] . "images/icons/no-image.png";
+    }
+    if ($pic3 != "") {
+        $gambar3 = $set['url'] . "images/source/" . $pic3;
+    } else {
+        $gambar3 = $set['url'] . "images/icons/no-image.png";
+    }
+    if ($pic4 != "") {
+        $gambar4 = $set['url'] . "images/source/" . $pic4;
+    } else {
+        $gambar4 = $set['url'] . "images/icons/no-image.png";
+    }
+    if ($pic5 != "") {
+        $gambar5 = $set['url'] . "images/source/" . $pic5;
+    } else {
+        $gambar5 = $set['url'] . "images/icons/no-image.png";
+    }
+    if ($pic6 != "") {
+        $gambar6 = $set['url'] . "images/source/" . $pic6;
+    } else {
+        $gambar6 = $set['url'] . "images/icons/no-image.png";
+    }
 
     echo '
     <div class="wrap-modal js-modal' . $id . ' p-t-60 p-b-20">
@@ -185,31 +221,61 @@ while ($mdata = $modal_query->fetch_array()) {
                                 <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                                 <div class="slick3 gallery-lb">
-                                    <div class="item-slick3" data-thumb="' . $set['url'] . 'images/source/' . $gambar1 . '">
+                                    <div class="item-slick3" data-thumb="' . $gambar1 . '">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="' . $set['url'] . 'images/source/' . $gambar1 . '" alt="' . $nama . '">
+                                            <img src="' . $gambar1 . '" alt="' . $nama . '">
 
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $set['url'] . 'images/source/' . $gambar1 . '">
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar1 . '">
                                                 <i class="fa fa-expand"></i>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="item-slick3" data-thumb="' . $set['url'] . 'images/source/' . $gambar2 . '">
+                                    <div class="item-slick3" data-thumb="' . $gambar2 . '">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="' . $set['url'] . 'images/source/' . $gambar2 . '" alt="' . $nama . '">
+                                            <img src="' . $gambar2 . '" alt="' . $nama . '">
 
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $set['url'] . 'images/source/' . $gambar2 . '">
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar2 . '">
                                                 <i class="fa fa-expand"></i>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="item-slick3" data-thumb="' . $set['url'] . 'images/source/' . $gambar3 . '">
+                                    <div class="item-slick3" data-thumb="' . $gambar3 . '">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img src="' . $set['url'] . 'images/source/' . $gambar3 . '" alt="' . $nama . '">
+                                            <img src="' . $gambar3 . '" alt="' . $nama . '">
 
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $set['url'] . 'images/source/' . $gambar3 . '">
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar3 . '">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-slick3" data-thumb="' . $gambar4 . '">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="' . $gambar4 . '" alt="' . $nama . '">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar4 . '">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-slick3" data-thumb="' . $gambar5 . '">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="' . $gambar5 . '" alt="' . $nama . '">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar5 . '">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-slick3" data-thumb="' . $gambar6 . '">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="' . $gambar6 . '" alt="' . $nama . '">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="' . $gambar6 . '">
                                                 <i class="fa fa-expand"></i>
                                             </a>
                                         </div>
@@ -222,18 +288,39 @@ while ($mdata = $modal_query->fetch_array()) {
                     <div class="col-md-6 col-lg-5 p-b-30">
                         <div class="p-r-50 p-t-5 p-lr-0-lg">
                             <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                ' . $nama . '
+                                <span id="product' . $id . '">' . $nama . '</span>
                             </h4>
 
                             <span class="mtext-106 cl2">
                                 ' . rupiah($harga) . '
-                            </span>
+                            </span>';
 
+    if ($stok > 5) {
+        echo '
+                                <p class="stext-102 clgreen p-t-23">
+                                    ' . $stok . ' stocks available
+                                </p>
+                                ';
+    } elseif ($stok > 0 && $stok <= 5) {
+        echo '
+                                <p class="stext-102 clwarning p-t-23">
+                                    ' . $stok . ' stocks available
+                                </p>
+                                ';
+    } elseif ($stok == 0) {
+        echo '
+                                <p class="stext-102 cldanger p-t-23">
+                                    Out of stocks
+                                </p>
+                                ';
+    }
+    echo '
                             <p class="stext-102 cl3 p-t-23">
                                 ' . $desc . '
                             </p>
 
                             <!--  -->
+                            <input id="ip' . $id . '" type="hidden" name="id" value="' . $id . '">
                             <div class="p-t-33">
                                 <div class="flex-w flex-r-m p-b-10">
                                     <div class="size-203 flex-c-m respon6">
@@ -242,8 +329,8 @@ while ($mdata = $modal_query->fetch_array()) {
 
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="size">
-                                                <option>Pilih ukuran</option>
+                                            <select id="size' . $id . '" class="js-select2" name="size">
+                                                <option value="">Pilih ukuran</option>
                                                 ';
     $sizeid_query = $mysqli->query("SELECT * FROM product WHERE id='$id' ");
     while ($siddata = $sizeid_query->fetch_array()) {
@@ -275,8 +362,8 @@ while ($mdata = $modal_query->fetch_array()) {
 
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="color">
-                                                <option>Pilih warna</option>
+                                            <select id="color' . $id . '" class="js-select2" name="color">
+                                                <option value="">Pilih warna</option>
                                                 ';
     $colorid_query = $mysqli->query("SELECT * FROM product WHERE id='$id' ");
     while ($ciddata = $colorid_query->fetch_array()) {
@@ -306,18 +393,36 @@ while ($mdata = $modal_query->fetch_array()) {
                                         <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                             <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </div>
-
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
-
+                                            </div>';
+    if ($stok == 0) {
+        echo '
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="0" min="0" max="0">
+                                                ';
+    } else {
+        echo '
+                                                <input id="qty' . $id . '" class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1" min="1" max="' . $stok . '">
+                                                ';
+    }
+    echo '
                                             <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
                                             </div>
-                                        </div>
+                                        </div>';
+    if ($stok == 0) {
+        echo '
+                                            <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . ' disabled" disabled>
+                                                Add to cart
+                                            </button>
+                                            ';
+    } else {
+        echo '
+                                            <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . '">
+                                                Add to cart
+                                            </button>
+                                            ';
+    }
 
-                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                            Add to cart
-                                        </button>
+    echo '                                        
                                     </div>
                                 </div>
                             </div>
@@ -408,10 +513,64 @@ while ($mdata = $modal_query->fetch_array()) {
 
     /*---------------------------------------------*/
 
-    $('.js-addcart-detail').each(function() {
-        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to cart !", "success");
+    // $('.js-addcart-detail').each(function() {
+    //     // var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+    //     var product = $('#product').html();
+    //     var price = $('#price').html();
+    //     var id = $('#id').val();
+
+    //     $(this).on('click', function() {
+    //         $('.js-select2').change(function() {
+    //             var size = $('.js-select2').val();
+    //             console.log(size);
+    //         });
+    //         console.log(product);
+    //         console.log(price);
+    //         console.log(id);
+
+    //         swal(product, "is added to cart !", "success");
+    //     });
+    // });
+</script>
+<script>
+    $(document).ready(function() {
+
+        // var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $('.js-addcart-detail').on('click', function() {
+            var product = $('#product').html();
+            // var price = $('#price').html();
+            var ip = $('#ip').val();
+            var size = $('#size').val();
+            var color = $('#color').val();
+            var qty = $('#qty').val();
+            console.log(product);
+            // console.log(price);
+            console.log(ip);
+            console.log(size);
+            console.log(color);
+            console.log(qty);
+            if ((size == "") && (color == "")) {
+                swal("Failed", product + " failed to add to cart!", "error");
+            } else if ((size == "")) {
+                swal("Failed", "Size not selected!", "error");
+            } else if ((color == "")) {
+                swal("Failed", "Color not selected!", "error");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo $set['url']; ?>shop/add-to-cart.php',
+                    data: {
+                        'id': ip,
+                        'size': size,
+                        'color': color,
+                        'qty': qty
+                    },
+                    success: function(html) {
+                        swal("Success", product + " is added to cart!", "success");
+                    }
+                });
+            }
+
         });
     });
 </script>
@@ -443,6 +602,35 @@ while ($mdata = $modal_query->fetch_array()) {
     while ($jsmdata = $jsmquery->fetch_array()) {
         $jsmid = $jsmdata['id'];
         ?>
+        $('.js-addcart-detail<?php echo $jsmid; ?>').on('click', function() {
+            var product = $('#product<?php echo $jsmid; ?>').html();
+            var ip = $('#ip<?php echo $jsmid; ?>').val();
+            var size = $('#size<?php echo $jsmid; ?>').val();
+            var color = $('#color<?php echo $jsmid; ?>').val();
+            var qty = $('#qty<?php echo $jsmid; ?>').val();
+            if ((size == "") && (color == "")) {
+                swal("Failed", product + " failed to add to cart!", "error");
+            } else if ((size == "")) {
+                swal("Failed", "Size not selected!", "error");
+            } else if ((color == "")) {
+                swal("Failed", "Color not selected!", "error");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo $set['url']; ?>shop/add-to-cart.php',
+                    data: {
+                        'id': ip,
+                        'size': size,
+                        'color': color,
+                        'qty': qty
+                    },
+                    success: function(html) {
+                        swal("Success", product + " is added to cart!", "success");
+                    }
+                });
+            }
+
+        });
         $('.js-show-modal<?php echo $jsmid; ?>').on('click', function(e) {
             e.preventDefault();
             $('.js-modal<?php echo $jsmid; ?>').addClass('show-modal');

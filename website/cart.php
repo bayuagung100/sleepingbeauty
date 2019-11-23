@@ -15,86 +15,195 @@
 <form class="bg0 p-t-75 p-b-85">
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-                <div class="m-l-25 m-r--38 m-lr-0-xl">
+            <?php
+            $total = 0;
+            $totalberat = 0;
+            $yourcartquery = $mysqli->query("SELECT * FROM temp_cart WHERE id_session='$sesi' ");
+            $ceking = mysqli_num_rows($yourcartquery);
+
+            if ($ceking > 0) {
+            echo '
+            <div class="col-lg-12 col-xl-12 m-lr-auto m-b-50">
+                
                     <div class="wrap-table-shopping-cart">
                         <table class="table-shopping-cart">
                             <tr class="table_head">
+                                <th class="column-aksi"></th>
                                 <th class="column-1">Product</th>
                                 <th class="column-2"></th>
                                 <th class="column-3">Price</th>
                                 <th class="column-4">Quantity</th>
                                 <th class="column-5">Total</th>
                             </tr>
+                            ';
+                            while ($yourcart = $yourcartquery->fetch_array()) {
+                            $idcart = $yourcart['id'];
+                            $idproductcart = $yourcart['id_product'];
+                            $sesicart = $yourcart['id_session'];
+                            $sizecart = $yourcart['size'];
+                            $colorcart = $yourcart['color'];
+                            $qtycart = $yourcart['qty'];
+                            $datecart = $yourcart['date'];
 
+                            $productquery = $mysqli->query("SELECT * FROM product WHERE id='$idproductcart' ");
+                            while ($data = $productquery->fetch_array()) {
+                            $id = $data['id'];
+                            $url = $data['product_url'];
+                            $nama = $data['product_name'];
+                            $harga = $data['product_price'];
+                            $berat = $data['product_weight'];
+                            $ukuran = $data['product_size'];
+                            $warna = $data['product_color'];
+                            $pic1 = $data['product_image1'];
+                            if ($pic1 != "") {
+                            $gambar1 = $set['url'] . "images/source/" . $pic1;
+                            } else {
+                            $gambar1 = $set['url'] . "images/icons/no-image.png";
+                            }
+
+                            $ib = $qtycart*$berat;
+                            $it = $qtycart * $harga;
+                            $total += $it;
+                            $totalberat += $ib;
+
+                            echo '
                             <tr class="table_row">
+                                <td class="column-aksi">
+                                <span id="del-cart'.$id.'">x</span>
+                                </td> 
                                 <td class="column-1">
                                     <div class="how-itemcart1">
-                                        <img src="images/helaihijab/1.jpeg" alt="">
+                                        <img src="'.$gambar1.'" alt="'.$nama.'">
                                     </div>
                                 </td>
-                                <td class="column-2">Nama Product</td>
-                                <td class="column-3">Rp 10.000</td>
+                                <td class="column-2">'.$nama.'<br>@'.$berat.' gram</td>
+                                <td class="column-3">'.rupiah($harga).'</td>
                                 <td class="column-4">
                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                        <div id="min-product'.$id.'" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                         </div>
 
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="'.$qtycart.'">
 
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <div id="plus-product'.$id.'" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="column-5">Rp 10.000</td>
+                                <td class="column-5">'.rupiah($it).'<br>@'.$ib.' gram</td>
                             </tr>
+                            ';
+                            }
+                            }
 
-                            <tr class="table_row">
-                                <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="images/helaihijab/2.jpeg" alt="">
-                                    </div>
-                                </td>
-                                <td class="column-2">Nama Product</td>
-                                <td class="column-3">Rp 10.000</td>
-                                <td class="column-4">
-                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
-                                        </div>
-
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="column-5">Rp 10.000</td>
-                            </tr>
+                            echo '
                         </table>
                     </div>
+                
+            </div>
+            ';
+            
+            echo'
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="bor10 p-lr-40 p-t-30 p-b-40">
+                    <h4 class="mtext-109 cl2 p-b-30">
+                        Penagihan & Pengiriman
+                    </h4>
+                    <input type="hidden" id="subtotal" name="subtotal" value="'.$total.'">
+                    <input type="hidden" id="weight" name="weight" value="'.$totalberat.'">
+                    <p>Nama Lengkap (Wajib diisi)</p>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="name" placeholder="Nama Lengkap" required>
+                    </div>
+                    <p>Email (Wajib diisi)</p>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="email" placeholder="example@email.com" required>
+                    </div>
+                    <p>No Hp / WhatsApp (Wajib diisi)</p>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="tel" name="tel" placeholder="081xxxxxxxxx" required>
+                    </div>
+                    <p>Provinsi (Wajib diisi)</p>
+                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">';
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "GET",
+                        CURLOPT_HTTPHEADER => array(
+                            "key: 772b99fdc5a62231d8a83772580ae8fa"
+                        ),
+                    ));
 
-                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                        <div class="flex-w flex-m m-r-20 m-tb-5">
-                            <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+                    curl_close($curl);
+                    $listProv = array();
 
-                            <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                Apply coupon
-                            </div>
-                        </div>
+                    if ($err) {
+                        echo "cURL Error #:" . $err;
+                    } else {
+                        $arrayResponse = json_decode($response, true);
 
-                        <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                            Update Cart
-                        </div>
+                        $tempListProv = $arrayResponse['rajaongkir']['results'];
+
+                        foreach ($tempListProv as $value) {
+                            $prov = new stdClass();
+                            $prov->id = $value['province_id'];
+                            $prov->nama = $value['province'];
+
+                            array_push($listProv, $prov);
+                        }
+
+                        echo '
+                        <select id="provinsi" class="js-select2" name="provinsi" required>
+                            <option value="">Pilih Porvinsi</option>
+                        ';
+                        foreach ($listProv as $prov) {
+                            echo '
+                            <option value="' . $prov->id . '" province="' . $prov->nama . '">' . $prov->nama . '</option>
+                            ';
+                        }
+                        echo '
+                            </select>
+                        ';
+                    }
+                    echo'
+                        <div class="dropDownSelect2"></div>
+                    </div>
+
+                    <p>Kota / Kabupaten (Wajib diisi)</p>
+                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        <select id="kabupaten" class="js-select2" name="kabupaten" required>
+                            <option value="">Pilih Kota / Kabupaten</option>
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+
+                    <p>Kecamatan (Wajib diisi)</p>
+                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        <select id="kecamatan" class="js-select2" name="kecamatan" required>
+                            <option value="">Pilih Kecamatan</option>
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+
+                    <p>Kode Pos (Wajib diisi)</p>
+                    <div class="bor8 bg0 m-b-22">
+                        <input id="postcode" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Kode Pos" required>
                     </div>
                 </div>
             </div>
+            ';
 
-            <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-                <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+            echo '
+            <div class="col-lg-7 col-xl-5 m-lr-auto m-b-50">
+                <div class="bor10 p-lr-40 p-t-30 p-b-40">
                     <h4 class="mtext-109 cl2 p-b-30">
                         Cart Totals
                     </h4>
@@ -108,7 +217,7 @@
 
                         <div class="size-209">
                             <span class="mtext-110 cl2">
-                                Rp 20.000
+                                '.rupiah($total).'<br>@'.$totalberat.' gram
                             </span>
                         </div>
                     </div>
@@ -122,65 +231,58 @@
 
                         <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
                             <p class="stext-111 cl6 p-t-2">
-                                Pengiriman dari ...
+                                Pengiriman dari Jakarta Selatan (Toko Kami).
                             </p>
+                        </div>
+                        <div class="size-208 w-full-ssm">
+                            <span class="stext-110 cl2">
+                                Support Ekspedisi:
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://4.bp.blogspot.com/-fFDLpgZ1Phc/WmodcSFG05I/AAAAAAAAAU0/uYmDnAgjIFkukgg1KsMxoHmocJY-BmENgCLcBGAs/s1600/jne.jpg">
+                            <img src="https://4.bp.blogspot.com/-pDkLCuqPJy4/WmoddcsTDbI/AAAAAAAAAVA/zjQfPv-jthUpgPxuxqiPKDSdP5f43xu8gCLcBGAs/s1600/pos.jpg">
+                            <img src="https://2.bp.blogspot.com/-UGUohE6I-1M/Wmoddl7IecI/AAAAAAAAAVI/HuGEyMIU6Yg17jPfGflEtfnb7gHd2-zmACLcBGAs/s1600/tiki.jpg">
+                        </div>
+                        
+                    </div>
 
-                            <div class="p-t-15">
-                                <span class="stext-112 cl8">
-                                    Menghitung Ongkir
-                                </span>
+                    <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                        <div class="p-t-15" style="width:100%">
+                            <span class="stext-112 cl8">
+                                Menghitung Ongkir (Wajib diisi)
+                            </span>
 
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" name="time">
-                                        <option>Pilih Porvinsi</option>
-                                        <option>Porvinsi A</option>
-                                        <option>Porvinsi B</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" name="time">
-                                        <option>Pilih Kota / Kabupaten</option>
-                                        <option>Kota / Kabupaten A</option>
-                                        <option>Kota / Kabupaten B</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" name="time">
-                                        <option>Pilih Kecamatan</option>
-                                        <option>Kecamatan A</option>
-                                        <option>Kecamatan B</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-
-                                <div class="bor8 bg0 m-b-22">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Kode Pos">
-                                </div>
-
-                                <div class="flex-w">
-                                    <div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-                                        Update Totals
-                                    </div>
-                                </div>
-
+                            <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                                <select id="ekspedisi" class="js-select2" name="ekspedisi" required>
+                                    <option value="">Pilih Ekspedisi</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="pos">POS Indonesia</option>
+                                    <option value="jnt">J&T Express</option>
+                                    <option value="jet">JET Express</option>
+                                    <option value="wahana">Wahana</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
                             </div>
+
+                            <div id="list-ekspedisi">
+                            
+                            </div>
+
                         </div>
                     </div>
 
                     <div class="flex-w flex-t p-t-27 p-b-33">
-                        <div class="size-208">
+                        <div class="size-211">
                             <span class="mtext-101 cl2">
                                 Total:
                             </span>
                         </div>
 
                         <div class="size-209 p-t-1">
-                            <span class="mtext-110 cl2">
-                                Rp 20.000
+                            <span id="grand-total" class="mtext-110 cl2">
+                            Calculating...
                             </span>
                         </div>
                     </div>
@@ -190,6 +292,32 @@
                     </button>
                 </div>
             </div>
+            ';
+            } else {
+            echo '
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart">
+                            <tr class="table_head">
+                                <th class="column-aksi"></th>
+                                <th class="column-1">Product</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">Price</th>
+                                <th class="column-4">Quantity</th>
+                                <th class="column-5">Total</th>
+                            </tr>
+
+                            <tr class="table_row">
+                                <td colspan="6" style="text-align:center">Your cart is empty</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            ';
+            
+}?>
         </div>
     </div>
 </form>

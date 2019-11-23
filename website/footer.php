@@ -410,13 +410,13 @@ while ($mdata = $modal_query->fetch_array()) {
                                         </div>';
     if ($stok == 0) {
         echo '
-                                            <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . ' disabled" disabled>
+                                            <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . ' disabled" disabled>
                                                 Add to cart
                                             </button>
                                             ';
     } else {
         echo '
-                                            <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . '">
+                                            <button id="btn-add-to-cart" type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' . $id . '">
                                                 Add to cart
                                             </button>
                                             ';
@@ -532,48 +532,6 @@ while ($mdata = $modal_query->fetch_array()) {
     //     });
     // });
 </script>
-<script>
-    $(document).ready(function() {
-
-        // var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $('.js-addcart-detail').on('click', function() {
-            var product = $('#product').html();
-            // var price = $('#price').html();
-            var ip = $('#ip').val();
-            var size = $('#size').val();
-            var color = $('#color').val();
-            var qty = $('#qty').val();
-            console.log(product);
-            // console.log(price);
-            console.log(ip);
-            console.log(size);
-            console.log(color);
-            console.log(qty);
-            if ((size == "") && (color == "")) {
-                swal("Failed", product + " failed to add to cart!", "error");
-            } else if ((size == "")) {
-                swal("Failed", "Size not selected!", "error");
-            } else if ((color == "")) {
-                swal("Failed", "Color not selected!", "error");
-            } else {
-                $.ajax({
-                    type: 'POST',
-                    url: '<?php echo $set['url']; ?>shop/add-to-cart.php',
-                    data: {
-                        'id': ip,
-                        'size': size,
-                        'color': color,
-                        'qty': qty
-                    },
-                    success: function(html) {
-                        swal("Success", product + " is added to cart!", "success");
-                    }
-                });
-            }
-
-        });
-    });
-</script>
 <!--===============================================================================================-->
 <script src="<?php echo $set['url']; ?>vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
@@ -595,6 +553,50 @@ while ($mdata = $modal_query->fetch_array()) {
 <script src="<?php echo $set['url']; ?>js/main.js"></script>
 
 <script>
+    $(document).ready(function() {
+
+        // var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $('.js-addcart-detail').on('click', function() {
+            var product = $('#product').html();
+            // var price = $('#price').html();
+            var ip = $('#ip').val();
+            var size = $('#size').val();
+            var color = $('#color').val();
+            var qty = $('#qty').val();
+            console.log(product);
+            // console.log(price);
+            console.log(ip);
+            console.log(size);
+            console.log(color);
+            console.log(qty);
+            if ((size == "") && (color == "")) {
+                swal("Failed", product + " failed to add to cart, size and color not selected!", "error");
+            } else if ((size == "")) {
+                swal("Failed", "Size not selected!", "error");
+            } else if ((color == "")) {
+                swal("Failed", "Color not selected!", "error");
+            } else if ((qty == 0)){
+                swal("Failed", "Qty can not be empty!", "error");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo $set['url']; ?>shop/add-to-cart.php',
+                    data: {
+                        'id': ip,
+                        'size': size,
+                        'color': color,
+                        'qty': qty
+                    },
+                    success: function(html) {
+                        swal("Success", product + " is added to cart!", "success");
+                    }
+                });
+            }
+
+        });
+    });
+</script>
+<script>
     /*==================================================================
     [ Show modal1 ]*/
     <?php
@@ -609,11 +611,13 @@ while ($mdata = $modal_query->fetch_array()) {
             var color = $('#color<?php echo $jsmid; ?>').val();
             var qty = $('#qty<?php echo $jsmid; ?>').val();
             if ((size == "") && (color == "")) {
-                swal("Failed", product + " failed to add to cart!", "error");
+                swal("Failed", product + " failed to add to cart, size and color not selected!", "error");
             } else if ((size == "")) {
                 swal("Failed", "Size not selected!", "error");
             } else if ((color == "")) {
                 swal("Failed", "Color not selected!", "error");
+            } else if ((qty == 0)){
+                swal("Failed", "Qty can not be empty!", "error");
             } else {
                 $.ajax({
                     type: 'POST',
@@ -643,7 +647,155 @@ while ($mdata = $modal_query->fetch_array()) {
     }
     ?>
 </script>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/count-cart.php',
+                success: function(html) {
+                    $('#count_cart').attr('data-notify', html);
+                    $('#count_cart_mobile').attr('data-notify', html);
+                }
+            });
+        }, 1000);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#cart').load('<?php echo $set['url']; ?>ajax/list-cart.php');
+    });
+    $(document).ready(function() {
+        $(document).on('click', '#btn-add-to-cart', function() {
+            $('#cart').load('<?php echo $set['url']; ?>ajax/list-cart.php');
+        });
+    });
+</script>
+<script>
+    <?php
+    $delquery = $mysqli->query("SELECT * FROM product");
+    while ($deldata = $delquery->fetch_array()) {
+        $delid = $deldata['id'];
+        ?>
+        $('#del-cart<?php echo $delid; ?>').on('click', function() {
+            var ip = <?php echo $delid; ?>;
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/remove-cart.php',
+                data: 'id=' + ip,
+                success: function(html) {
+                    swal("Success", "Product is removed from cart!", "success");
+                    window.location = "<?php echo $set['url']; ?>cart";
+                }
+            });
+        });
+        $('#min-product<?php echo $delid; ?>').on('click', function() {
+            var ip = <?php echo $delid; ?>;
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/min-cart.php',
+                data: 'id=' + ip,
+                success: function(html) {
+                    window.location = "<?php echo $set['url']; ?>cart";
+                }
+            });
+        });
+        $('#plus-product<?php echo $delid; ?>').on('click', function() {
+            var ip = <?php echo $delid; ?>;
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/plus-cart.php',
+                data: 'id=' + ip,
+                success: function(html) {
+                    window.location = "<?php echo $set['url']; ?>cart";
+                }
+            });
+        });
+    <?php } ?>
+</script>
+<script>
+    $(document).ready(function() {
+        $('#provinsi').change(function() {
 
+            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+            var province_id = $('#provinsi').val();
+            var province = $('#provinsi option:selected').attr('province');
+            console.log(province_id);
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/rajaongkir/cek-kabupaten.php',
+                data: {
+                    'province_id': province_id,
+                    'province': province
+                },
+                success: function(data) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#kabupaten").html(data);
+                }
+            });
+        });
+        $('#kabupaten').change(function() {
+
+            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+            var city_id = $('#kabupaten').val();
+            var city_name = $('#kabupaten option:selected').attr('city_name');
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/rajaongkir/cek-kecamatan.php',
+                data: {
+                    'city_id': city_id,
+                    'city_name': city_name
+                },
+                success: function(data) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#kecamatan").html(data);
+                }
+            });
+        });
+        $('#ekspedisi').change(function() {
+
+            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+            var subdistrict_id = $('#kecamatan').val();
+            var subdistrict_name = $('#kecamatan option:selected').attr('subdistrict_name');
+            var courier = $('#ekspedisi').val();
+            var weight = $('#weight').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/rajaongkir/cek-ongkir.php',
+                data: {
+                    'subdistrict_id': subdistrict_id,
+                    'subdistrict_name': subdistrict_name,
+                    'courier': courier,
+                    'weight': weight
+                },
+                success: function(data) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#list-ekspedisi").html(data);
+                }
+            });
+        });
+        $('#list-ekspedisi').on("change", function() {
+            var ongkir = $('#list-ekspedisi input:checked').attr('price');
+            var subtotal = $('#subtotal').val();
+            var grandttl = parseInt(subtotal) + parseInt(ongkir);
+            var reverse = grandttl.toString().split('').reverse().join(''),
+                ribuan = reverse.match(/\d{1,3}/g);
+                ribuan = ribuan.join('.').split('').reverse().join('');
+            document.getElementById('grand-total').innerText = "Rp " + ribuan;
+        });
+
+    });
+</script>
+<script>
+function invalid(name) {
+  alert(name+" mohon diisi!");
+}
+</script>
 <script>
     $(document).ready(function() {
         $(document).on('click', '.more_product', function() {
@@ -652,7 +804,7 @@ while ($mdata = $modal_query->fetch_array()) {
             $('.loading_product').show();
             $.ajax({
                 type: 'POST',
-                url: 'more-product.php',
+                url: '<?php echo $set['url']; ?>more-product.php',
                 data: 'id=' + ID,
                 success: function(html) {
                     $('#more_product_main' + ID).remove();
@@ -661,43 +813,6 @@ while ($mdata = $modal_query->fetch_array()) {
             });
         });
 
-        // $(document).on('click', '.more_category', function() {
-        //     var ID = $(this).attr('id');
-        //     var NAME = $(this).attr('name');
-        //     console.log(NAME);
-        //     $('.more_category').hide();
-        //     $('.loading_category').show();
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: 'more-category.php',
-        //         data: {
-        //             id: ID,
-        //             name: NAME
-        //         },
-        //         success: function(html) {
-        //             $('#more_category_main' + ID).remove();
-        //             $('#post_category').append(html);
-        //         }
-        //     });
-        // });
-
-        // $(window).scroll(function() {
-        //     var lastID = $('.loading_category').attr('lastID');
-        //     if (($(window).scrollTop() == $(document).height() - $(window).height()) && (lastID != 0)) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: 'more-category.php',
-        //             data: 'id=' + lastID,
-        //             beforeSend: function() {
-        //                 $('.loading_category').show();
-        //             },
-        //             success: function(html) {
-        //                 $('.loading_category').remove();
-        //                 $('#post_category').append(html);
-        //             }
-        //         });
-        //     }
-        // });
     });
 </script>
 

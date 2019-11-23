@@ -2024,9 +2024,28 @@ input.num-product::-webkit-inner-spin-button {
     border-bottom: 1px solid #e6e6e6;
 }
 
+.table-shopping-cart .column-aksi {
+    width: 50px;
+    text-align: center;
+}
+
+.table-shopping-cart .column-aksi span {
+    padding: 10px;
+
+    background-color:
+        antiquewhite;
+
+    border-radius: 50%;
+
+    margin: 10px;
+
+    cursor: pointer;
+
+    font-size: 25px;
+}
+
 .table-shopping-cart .column-1 {
     width: 133px;
-    padding-left: 50px;
 }
 
 .table-shopping-cart .column-2 {
@@ -3249,14 +3268,14 @@ input.num-product::-webkit-inner-spin-button {
     width: 60px;
     position: relative;
     margin-right: 20px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .how-itemcart1 img {
     width: 100%;
 }
 
-.how-itemcart1::after {
+/* .how-itemcart1::after {
     content: '\e870';
     font-family: Linearicons-Free;
     font-size: 16px;
@@ -3279,11 +3298,11 @@ input.num-product::-webkit-inner-spin-button {
     -o-transition: all 0.3s;
     -moz-transition: all 0.3s;
     opacity: 0;
-}
+} */
 
-.how-itemcart1:hover:after {
+/* .how-itemcart1:hover:after {
     opacity: 1;
-}
+} */
 
 
 /*---------------------------------------------*/
@@ -3900,4 +3919,59 @@ input.num-product::-webkit-inner-spin-button {
 .disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    /* left: -9999px; */
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }

@@ -10,7 +10,12 @@
         Cart
     </span>
 </div>
+<?php
+$query = mysqli_query($mysqli, "SELECT * FROM temp_cart WHERE id_session='$sesi' ");
+$data = mysqli_fetch_array($query);
 
+$id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_product'];
+?>
 <!-- Shoping Cart -->
 <form class="bg0 p-t-75 p-b-85">
     <div class="container">
@@ -110,19 +115,25 @@
                     <h4 class="mtext-109 cl2 p-b-30">
                         Penagihan & Pengiriman
                     </h4>
+                    <input type="hidden" id="sesi" name="sesi" value="'.$sesi.'">
+                    <input type="hidden" id="id_pesanan" name="id_pesanan" value="'.$id_pesanan.'">
                     <input type="hidden" id="subtotal" name="subtotal" value="'.$total.'">
                     <input type="hidden" id="weight" name="weight" value="'.$totalberat.'">
                     <p>Nama Lengkap (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="name" placeholder="Nama Lengkap" required>
+                        <input id="name" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="name" placeholder="Nama Lengkap" required>
                     </div>
                     <p>Email (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="email" placeholder="example@email.com" required>
+                        <input id="email" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="email" placeholder="example@email.com" required>
                     </div>
                     <p>No Hp / WhatsApp (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="tel" name="tel" placeholder="081xxxxxxxxx" required>
+                        <input id="tel" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="tel" name="tel" placeholder="081xxxxxxxxx" required>
+                    </div>
+                    <p>Alamat Lengkap (Wajib diisi)</p>
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                    <textarea id="address" class="stext-111 cl2 plh3 size-textarea p-lr-28 p-tb-25" name="address" placeholder="Nama jalan dan nomor rumah"></textarea>
                     </div>
                     <p>Provinsi (Wajib diisi)</p>
                     <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">';
@@ -234,16 +245,6 @@
                                 Pengiriman dari Jakarta Selatan (Toko Kami).
                             </p>
                         </div>
-                        <div class="size-208 w-full-ssm">
-                            <span class="stext-110 cl2">
-                                Support Ekspedisi:
-                            </span>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://4.bp.blogspot.com/-fFDLpgZ1Phc/WmodcSFG05I/AAAAAAAAAU0/uYmDnAgjIFkukgg1KsMxoHmocJY-BmENgCLcBGAs/s1600/jne.jpg">
-                            <img src="https://4.bp.blogspot.com/-pDkLCuqPJy4/WmoddcsTDbI/AAAAAAAAAVA/zjQfPv-jthUpgPxuxqiPKDSdP5f43xu8gCLcBGAs/s1600/pos.jpg">
-                            <img src="https://2.bp.blogspot.com/-UGUohE6I-1M/Wmoddl7IecI/AAAAAAAAAVI/HuGEyMIU6Yg17jPfGflEtfnb7gHd2-zmACLcBGAs/s1600/tiki.jpg">
-                        </div>
                         
                     </div>
 
@@ -273,6 +274,37 @@
                         </div>
                     </div>
 
+                    <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                        <div class="p-t-15" style="width:100%">
+                            <span class="stext-112 cl8">
+                                Payment Method (Wajib diisi)
+                            </span>
+
+                            <p id="payment-method">';
+                            $bankquery = $mysqli->query("SELECT * FROM rekening_bank");
+                            while ($databank = $bankquery->fetch_array()) {
+                                $id = $databank['id'];
+                                $nama = $databank['nama_bank'];
+                                $norek = $databank['no_rek'];
+                                $namapemilik = $databank['nama_pemilik'];
+                                $logo = $databank['logo_bank'];
+
+                                echo '
+                                <input style="display:none" id="'.$nama.'" type="radio" name="payment-method" value="'.$nama.'-'.$norek.'-'.$namapemilik.'" required/>
+                                <label for="'.$nama.'">
+                                    <img src="'.$set['url'].'images/source/'.$logo.'" style="max-width:150px;max-height:100px">
+                                </label>
+                                ';
+                            }
+                                
+
+                        echo '
+                            </p>
+                            
+
+                        </div>
+                    </div>
+
                     <div class="flex-w flex-t p-t-27 p-b-33">
                         <div class="size-211">
                             <span class="mtext-101 cl2">
@@ -287,9 +319,9 @@
                         </div>
                     </div>
 
-                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                    <div id="buat-pesanan" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                         Buat Pesanan
-                    </button>
+                    </div>
                 </div>
             </div>
             ';

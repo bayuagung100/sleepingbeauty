@@ -88,7 +88,7 @@
 
                     <!-- Logo desktop -->
                     <a href="<?php echo $set['url']; ?>" class="logo">
-                        <img src="" alt="Logo">
+                        <img src="<?php echo $set['url']; ?>images/icons/sb-logo.jpg" alt="Logo">
                     </a>
 
                     <!-- Menu desktop -->
@@ -157,7 +157,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="<?php echo $set['url']; ?>"><img src="" alt="Logo"></a>
+                <a href="<?php echo $set['url']; ?>"><img src="<?php echo $set['url']; ?>images/icons/sb-logo.jpg" alt="Logo"></a>
             </div>
 
             <!-- Icon header -->

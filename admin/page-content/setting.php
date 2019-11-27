@@ -164,7 +164,7 @@ switch ($show) {
         $url   = addslashes($_POST['url']);
         $description  = addslashes($_POST['description']);
 
-        $email   = ucwords(addslashes($_POST['email']));
+        $email   = addslashes($_POST['email']);
         $wa   = addslashes($_POST['wa']);
         $ig  = addslashes($_POST['ig']);
 

@@ -805,30 +805,54 @@ while ($mdata = $modal_query->fetch_array()) {
             var service = $('#list-ekspedisi input:checked').val();
             var payment_method = $('#payment-method input:checked').val();
 
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo $set['url']; ?>ajax/buat-pesanan.php',
-                data: {
-                    'sesi' : sesi,
-                    'id_pesanan' : id_pesanan,
-                    'subtotal' : subtotal,
-                    'weight' : weight,
-                    'name' : name,
-                    'email' : email,
-                    'tel' : tel,
-                    'address' : address,
-                    'provinsi' : province,
-                    'kabupaten' : kabupaten,
-                    'kecamatan' : kecamatan,
-                    'postcode' : postcode,
-                    'ekspedisi' : ekspedisi,
-                    'service' : service,
-                    'payment_method' : payment_method
-                },
-                success: function(html) {
-                    window.location = "<?php echo $set['url']; ?>terimakasih";
-                }
-            });
+            if ((name == "")) {
+                swal("Failed", "Nama tidak boleh kosong!", "error");
+            } else if ((email == "")) {
+                swal("Failed", "Email tidak boleh kosong!", "error");
+            } else if ((tel == "")) {
+                swal("Failed", "No Hp tidak boleh kosong!", "error");
+            } else if ((address == "")) {
+                swal("Failed", "Alamat tidak boleh kosong!", "error");
+            } else if ((province == null)) {
+                swal("Failed", "Provinsi tidak boleh kosong!", "error");
+            } else if ((kabupaten == null)) {
+                swal("Failed", "Kota / Kabupaten  tidak boleh kosong!", "error");
+            } else if ((kecamatan == null)) {
+                swal("Failed", "Kecamatan  tidak boleh kosong!", "error");
+            } else if ((postcode == "")) {
+                swal("Failed", "Kode Pos tidak boleh kosong!", "error");
+            } else if ((ekspedisi == "")) {
+                swal("Failed", "Ekspedisi tidak boleh kosong!", "error");
+            } else if ((service == null)) {
+                swal("Failed", "Service tidak boleh kosong!", "error");
+            } else if ((payment_method == null)) {
+                swal("Failed", "Payment Method tidak boleh kosong!", "error");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo $set['url']; ?>ajax/buat-pesanan.php',
+                    data: {
+                        'sesi' : sesi,
+                        'id_pesanan' : id_pesanan,
+                        'subtotal' : subtotal,
+                        'weight' : weight,
+                        'name' : name,
+                        'email' : email,
+                        'tel' : tel,
+                        'address' : address,
+                        'provinsi' : province,
+                        'kabupaten' : kabupaten,
+                        'kecamatan' : kecamatan,
+                        'postcode' : postcode,
+                        'ekspedisi' : ekspedisi,
+                        'service' : service,
+                        'payment_method' : payment_method
+                    },
+                    success: function(html) {
+                        window.location = "<?php echo $set['url']; ?>terimakasih";
+                    }
+                });
+            }
         });
         $('#konfirmasi-pembayaran').on('click', function() {
             var id_pesanan = $('#id-pesanan').html();

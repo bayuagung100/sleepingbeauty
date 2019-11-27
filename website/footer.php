@@ -834,22 +834,22 @@ while ($mdata = $modal_query->fetch_array()) {
             var id_pesanan = $('#id-pesanan').html();
             window.location = "<?php echo $set['url']; ?>konfirmasi-pembayaran/"+id_pesanan;
         });        
-        $('#kirim-konfirmasi').on('click', function() {
-            var id_pesanan = $('#id_pesanan').val();
-            var bank_tujuan = $('#bank_tujuan option:selected').val();
-            var bank_pengirim = $('#bank_pengirim').val();
-            var nama_pengirim = $('#nama_pengirim').val();
-            var tanggal_transfer = $('#tanggal_transfer').val();
-            var bukti_transfer = $('#bukti_transfer').val();
-            var catatan = $('#catatan').val();
-            console.log(id_pesanan);
-            console.log(bank_tujuan);
-            console.log(bank_pengirim);
-            console.log(nama_pengirim);
-            console.log(tanggal_transfer);
-            console.log(bukti_transfer);
-            console.log(catatan);
-        });     
+        // $('#kirim-konfirmasi').on('click', function() {
+        //     var id_pesanan = $('#id_pesanan').val();
+        //     var bank_tujuan = $('#bank_tujuan option:selected').val();
+        //     var bank_pengirim = $('#bank_pengirim').val();
+        //     var nama_pengirim = $('#nama_pengirim').val();
+        //     var tanggal_transfer = $('#tanggal_transfer').val();
+        //     var bukti_transfer = $('#bukti_transfer').val();
+        //     var catatan = $('#catatan').val();
+        //     console.log(id_pesanan);
+        //     console.log(bank_tujuan);
+        //     console.log(bank_pengirim);
+        //     console.log(nama_pengirim);
+        //     console.log(tanggal_transfer);
+        //     console.log(bukti_transfer);
+        //     console.log(catatan);
+        // });     
     });
 </script>
 <script>

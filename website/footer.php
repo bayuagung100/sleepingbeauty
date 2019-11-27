@@ -788,7 +788,68 @@ while ($mdata = $modal_query->fetch_array()) {
                 ribuan = ribuan.join('.').split('').reverse().join('');
             document.getElementById('grand-total').innerText = "Rp " + ribuan;
         });
+        $('#buat-pesanan').on('click', function() {
+            var sesi = $('#sesi').val();
+            var id_pesanan = $('#id_pesanan').val();
+            var subtotal = $('#subtotal').val();
+            var weight = $('#weight').val();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var tel = $('#tel').val();
+            var address= $('#address').val();
+            var province = $('#provinsi option:selected').attr('province');
+            var kabupaten = $('#kabupaten option:selected').attr('city_name');
+            var kecamatan = $('#kecamatan option:selected').attr('subdistrict_name');
+            var postcode = $('#postcode').val();
+            var ekspedisi = $('#ekspedisi').val();
+            var service = $('#list-ekspedisi input:checked').val();
+            var payment_method = $('#payment-method input:checked').val();
 
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/buat-pesanan.php',
+                data: {
+                    'sesi' : sesi,
+                    'id_pesanan' : id_pesanan,
+                    'subtotal' : subtotal,
+                    'weight' : weight,
+                    'name' : name,
+                    'email' : email,
+                    'tel' : tel,
+                    'address' : address,
+                    'provinsi' : province,
+                    'kabupaten' : kabupaten,
+                    'kecamatan' : kecamatan,
+                    'postcode' : postcode,
+                    'ekspedisi' : ekspedisi,
+                    'service' : service,
+                    'payment_method' : payment_method
+                },
+                success: function(html) {
+                    window.location = "<?php echo $set['url']; ?>terimakasih";
+                }
+            });
+        });
+        $('#konfirmasi-pembayaran').on('click', function() {
+            var id_pesanan = $('#id-pesanan').html();
+            window.location = "<?php echo $set['url']; ?>konfirmasi-pembayaran/"+id_pesanan;
+        });        
+        // $('#kirim-konfirmasi').on('click', function() {
+        //     var id_pesanan = $('#id_pesanan').val();
+        //     var bank_tujuan = $('#bank_tujuan option:selected').val();
+        //     var bank_pengirim = $('#bank_pengirim').val();
+        //     var nama_pengirim = $('#nama_pengirim').val();
+        //     var tanggal_transfer = $('#tanggal_transfer').val();
+        //     var bukti_transfer = $('#bukti_transfer').val();
+        //     var catatan = $('#catatan').val();
+        //     console.log(id_pesanan);
+        //     console.log(bank_tujuan);
+        //     console.log(bank_pengirim);
+        //     console.log(nama_pengirim);
+        //     console.log(tanggal_transfer);
+        //     console.log(bukti_transfer);
+        //     console.log(catatan);
+        // });     
     });
 </script>
 <script>

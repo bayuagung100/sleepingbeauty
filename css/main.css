@@ -2738,6 +2738,11 @@ input.num-product::-webkit-inner-spin-button {
     height: 40px;
 }
 
+.size-textarea {
+    width: 100%;
+    min-height: 100px;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ Width ]*/
@@ -3004,6 +3009,37 @@ input.num-product::-webkit-inner-spin-button {
     border-radius: 2px;
 }
 
+.borcard {
+    border: 1px solid #e6e6e6;
+    width: auto;
+    background-color: #f0f0f0;
+}
+
+.notifdanger {
+    border: 1px solid #ffa0a0;
+    width: auto;
+    background-color: #ffe8e8;
+    color: red;
+}
+
+.peringatan {
+    margin: 0 0 25px;
+    background: #ffeb3b;
+    border: 1px solid #fdd835;
+    padding: 25px;
+}
+
+.peringatan .icon-left {
+    float: left;
+    padding-right: 25px;
+}
+
+.peringatan .text {
+    margin: 0;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+}
 
 /*==================================================================
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
@@ -3584,6 +3620,12 @@ input.num-product::-webkit-inner-spin-button {
         width: 100%;
     }
 
+    .borcard {
+        border: 1px solid #e6e6e6;
+        width: auto;
+        background-color: #f0f0f0;
+    }
+
     /*---------------------------------------------*/
 }
 
@@ -3666,6 +3708,12 @@ input.num-product::-webkit-inner-spin-button {
         padding-top: 50px;
         padding-bottom: 50px;
     }
+
+    .borcard {
+        border: 1px solid #e6e6e6;
+        width: auto;
+        background-color: #f0f0f0;
+    }
 }
 
 
@@ -3744,6 +3792,12 @@ input.num-product::-webkit-inner-spin-button {
 
     #breadcrumb {
         margin-top: 40px;
+    }
+
+    .borcard {
+        border: 1px solid #e6e6e6;
+        width: auto;
+        background-color: #f0f0f0;
     }
 }
 
@@ -3839,6 +3893,12 @@ input.num-product::-webkit-inner-spin-button {
     .respon7 {
         padding-left: 60px;
     }
+
+    .borcard {
+        border: 1px solid #e6e6e6;
+        width: auto;
+        background-color: #f0f0f0;
+    }
 }
 
 
@@ -3913,6 +3973,12 @@ input.num-product::-webkit-inner-spin-button {
     /*---------------------------------------------*/
     .respon3 {
         padding: 20px;
+    }
+
+    .borcard {
+        border: 1px solid #e6e6e6;
+        width: auto;
+        background-color: #f0f0f0;
     }
 }
 

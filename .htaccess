@@ -11,7 +11,9 @@ RewriteRule ^category/(.*)$ index.php?content=category-detail&id=$1 [L]
 RewriteRule ^best-seller$ index.php?content=best-seller [L]
 RewriteRule ^contact$ index.php?content=contact [L]
 RewriteRule ^cart$ index.php?content=cart [L]
-
+RewriteRule ^terimakasih$ index.php?content=terimakasih [L]
+RewriteRule ^konfirmasi-pembayaran$ index.php?content=konfirmasi-pembayaran [L]
+RewriteRule ^konfirmasi-pembayaran/(.*)$ index.php?content=konfirmasi-pembayaran&id_pesanan=$1 [L]
 
 
 

@@ -124,19 +124,11 @@
                                 </ul>
                             </li>
 
-                            <!-- <li <?php if ($content == "best-seller") {
-                                            echo 'class="active-menu label1"';
-                                        } else {
-                                            echo 'class="label1"';
-                                        } ?> data-label1="hot">
-                                <a href="<?php echo $set['url']; ?>best-seller">Best Seller</a>
-                            </li>
-
-                            <li <?php if ($content == "contact") {
+                            <li <?php if ($content == "konfirmasi-pembayaran") {
                                     echo 'class="active-menu"';
                                 } else { } ?>>
-                                <a href="<?php echo $set['url']; ?>contact">Contact</a>
-                            </li> -->
+                                <a href="<?php echo $set['url']; ?>konfirmasi-pembayaran">Konfirmasi Pembayaran</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -237,12 +229,9 @@
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                 </li>
-                <!-- <li>
-                    <a href="<?php echo $set['url']; ?>best-seller" class="label1 rs1" data-label1="hot">Best Seller</a>
-                </li>
                 <li>
-                    <a href="<?php echo $set['url']; ?>contact">Contact</a>
-                </li> -->
+                    <a href="<?php echo $set['url']; ?>konfirmasi-pembayaran">Konfirmasi Pembayaran</a>
+                </li>
             </ul>
         </div>
 

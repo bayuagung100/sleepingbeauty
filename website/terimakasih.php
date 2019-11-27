@@ -29,7 +29,7 @@ $ongkir = $pecah2[2];
 $ekspedisi = strtoupper($data['ekspedisi']);
 $kecamatan = $data['kecamatan'];
 $total_berat = $data['total_berat'];
-if ($jml > 0) {
+if ($jml > 0) {    
     $to = $email;
     $subject = "HTML email";
 
@@ -62,7 +62,20 @@ if ($jml > 0) {
     $headers .= 'From: <sbeauty@erolperkasamandiri.co.id>' . "\r\n";
     $headers .= 'Cc: smileyoudontcry100@gmail.com' . "\r\n";
 
-    mail($to,$subject,$message,$headers);
+    if(mail($to,$subject,$message,$headers)){
+        echo '
+        <script>
+        alert("berhasil");
+        </script>
+        ';
+    } else {
+        echo '
+        <script>
+        alert("gagal");
+        </script>
+        ';
+    }
+
     // $mail_tagihan = strip_tags(htmlspecialchars($id_pesanan));
     // $mail_name = strip_tags(htmlspecialchars($nama));
     // $mail_email_address = strip_tags(htmlspecialchars($email));
@@ -124,7 +137,7 @@ if ($jml > 0) {
     // $headers .= "Reply-To: $mail_email_address";
     // mail($to,$email_subject,$email_body,$headers);
 ?>
-<div class="container m-t-50 m-b-50">
+<!-- <div class="container m-t-50 m-b-50">
     <div class="bor10 p-lr-40 p-t-30 p-b-40">
         <h4 class="text-center mtext-109 cl2">Terima kasih.<br>Pesanan Anda telah dibuat.</h4>
         <hr>
@@ -256,7 +269,7 @@ if ($jml > 0) {
 
         </div>
     </div>
-</div>
+</div> -->
 <?php
 } else {
     echo'

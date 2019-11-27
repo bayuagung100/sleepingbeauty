@@ -1,15 +1,15 @@
 <?php
 //server hosting
 $servername = "localhost";
-$username = "u328098603_sleepingbeauty";
+$username = "u328098603_sb";
 $password = "lalaLand123";
-$database = "u328098603_sleepingbeauty"; 
+$database = "u328098603_sb"; 
 
 //local-server
 // $servername = "sql261.main-hosting.eu";
-// $username = "u328098603_sleepingbeauty";
+// $username = "u328098603_sb";
 // $password = "lalaLand123";
-// $database = "u328098603_sleepingbeauty";
+// $database = "u328098603_sb";
 
 //localpc
 // $servername = "localhost";

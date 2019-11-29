@@ -1005,7 +1005,7 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
 $headers .= 'From: <sbeauty@erolperkasamandiri.co.id>' . "\r\n";
-$headers .= 'Cc: smileyoudontcry100@gmail.com' . "\r\n";
+$headers .= 'Cc: zhanzabila@gmail.com' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 

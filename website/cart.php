@@ -257,6 +257,7 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                             <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
                                 <select id="ekspedisi" class="js-select2" name="ekspedisi" required>
                                     <option value="">Pilih Ekspedisi</option>
+                                    <option value="sicepat">SiCepat Express</option>
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
                                     <option value="pos">POS Indonesia</option>

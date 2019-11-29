@@ -60,6 +60,14 @@
             </ul>
         </li>
         <li class="nav-item">
+            <a href="?content=pesanan" class="nav-link">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                    Pesanan
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="?content=setting" class="nav-link">
                 <i class="nav-icon fas fa-fw fa-cog"></i>
                 <p>

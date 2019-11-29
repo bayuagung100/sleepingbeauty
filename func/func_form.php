@@ -6,6 +6,16 @@ function buka_form($link, $id, $aksi)
 			<input type="hidden" name="aksi" value="' . $aksi . '">';
 }
 
+function buat_notag($label, $nilai, $lebar='4'){
+	echo'<div class="form-group row">
+			<label class="col-sm-2 control-label">'.$label.'</label>
+			<div class="col-sm-'.$lebar.'">
+				<b>'.$nilai.'</b>
+			</div>
+		 </div>
+		 ';
+}
+
 function buat_textbox($label, $nama, $nilai, $place, $tipe = "text")
 {
 	echo '<div class="form-group">
@@ -13,6 +23,35 @@ function buat_textbox($label, $nama, $nilai, $place, $tipe = "text")
 		<input type="' . $tipe . '" id="' . $nama . '" class="form-control" name="' . $nama . '" value="' . $nilai . '" placeholder="' . $place . '">
 		</div>';
 }
+
+function buat_rowtabsbuka(){
+    echo'
+    <div class="form-group row">
+    ';
+}
+function buat_rowtabstutup(){
+    echo'
+    </div>
+    ';
+}
+function buat_label($label, $lebar){
+    echo'
+    <label class="col-sm-'.$lebar.'" control-label">'.$label.'</label>
+    ';
+}
+function buat_col($nilai, $lebar){
+    echo'
+    <div class="col-sm-'.$lebar.'">'.$nilai.'</div>
+    ';
+}
+function buat_tag($label, $nilai, $lebar='4'){
+	echo'<div class="form-group">
+			<label class="col-sm-2 control-label">'.$label.'</label>
+			<div class="col-sm-'.$lebar.'">'.$nilai.'</div>
+		 </div>
+		 ';
+}
+
 function buat_time($label, $nama, $nilai, $place, $tipe = "text")
 {
 	echo '<div class="form-group">
@@ -186,6 +225,21 @@ function buat_inlinetutup_col()
 function buat_inlinetutup()
 {
 	echo '</div>';
+}
+
+function buat_combobox_biasa($label, $nama, $list, $nilai, $lebar = '4')
+{
+	echo '<div class="form-group" id="' . $nama . '">
+			<label for="' . $nama . '" class="control-label">' . $label . '</label>
+			<div class="col-sm-' . $lebar . '">
+			  <select class="form-control" name="' . $nama . '">';
+	foreach ($list as $ls) {
+		$select = $ls['val'] == $nilai ? 'selected' : '';
+		echo '<option value=' . $ls['val'] . ' ' . $select . '>' . $ls['cap'] . '</option>';
+	}
+	echo '	  </select>
+			</div>
+		 </div>';
 }
 
 function buat_combobox($label, $nama, $list, $nilai, $lebar = '4')

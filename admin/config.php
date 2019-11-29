@@ -39,6 +39,11 @@ $jam 		= date("H:i:s");
 $query = $mysqli->query("SELECT * FROM setting");
 $set = $query->fetch_array();
 
+
+$lama = 1; // lama data yang tersimpan di database dan akan otomatis terhapus setelah 1 hari
+// proses untuk melakukan penghapusan data otomatis CURDATE() untuk tanggal CURTIME() untuk jam
+$cron = $mysqli->query("DELETE FROM pembelian WHERE status='pending' AND DATEDIFF(CURDATE(), date) > $lama");
+
 function rupiah($angka){
 	$hasil_rupiah = "Rp " . number_format($angka,0,',','.');
 	return $hasil_rupiah;

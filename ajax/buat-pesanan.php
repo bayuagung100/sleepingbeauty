@@ -961,7 +961,7 @@ $message .= '
 																		Terima Kasih.</p>
 																	<p
 																		style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:15px;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;line-height:23px;color:#333333;">
-																		www.sleepingbeauty.co.id</p>
+																		sleepingbeauty.co.id</p>
 																</td>
 															</tr>
 														</table>

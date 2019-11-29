@@ -760,7 +760,7 @@ $jml_item = mysqli_num_rows($query2);
 while ($data2 = $query2->fetch_array()) {
       $ip = $data2['id_product'];
 	  $qty = $data2['qty'];
-	  $size = $data['size'];
+	  $size = $data2['size'];
       
       $total_mail=0;
       $totalberat_mail=0;

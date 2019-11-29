@@ -504,7 +504,7 @@ $message = '
 																		href="http://sleepingbeauty.co.id/"
 																		style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;font-size:18px;text-decoration:none;color:#38761D;">
 																		<img class="adapt-img"
-																			src="images/7921574998533621.jpg" alt
+																			src="http://sleepingbeauty.co.id/images/icons/sb-logo.jpg" alt="Sleeping Beauty"
 																			style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
 																			width="100" height="100"></a></td>
 															</tr>

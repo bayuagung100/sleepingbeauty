@@ -33,7 +33,7 @@ switch ($show) {
             $email = $data['email'];
             $hp = $data['tel'];
             $status = ucwords($data['status']);
-            isi_datatables($no, array($id_pesanan, $tanggal,$nama,$email,$hp,$status), $link, $id_pesanan);
+            detail_datatables($no, array($id_pesanan, $tanggal,$nama,$email,$hp,$status), $link, $id_pesanan);
             $no++;
         }
 
@@ -59,9 +59,15 @@ switch ($show) {
                 <div class="card ">
                     <div class="card-header">
                         <h3 class="card-title">'.$aksi.' Pesanan</h3>
+                        <a href="' . $link . '" class="btn btn-primary btn-icon-split" style="float: right!important;">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-angle-left"></i>
+                            </span>
+                            <span class="text">Kembali</span>
+                        </a>
                     </div>
                     <div class="card-body">';
-                    buka_form($link, $data['id_pesanan'], strtolower($aksi));
+                    // buka_form($link, $data['id_pesanan'], strtolower($aksi));
                     buat_notag("ID Pesanan :", $data['id_pesanan'], 4);
                     buat_rowtabsbuka();
                         buat_label("Nama :",2);
@@ -90,11 +96,49 @@ switch ($show) {
                     buat_tag("Alamat :", $data['address']);
                     echo "<hr>";
 
-                            $list = array();
-                            $list[] = array('val'=>'pending', 'cap'=>'Pending');
-                            $list[] = array('val'=>'success', 'cap'=>'Success');
-                    buat_combobox_biasa("Edit Status","status",$list, $data['status']);
-                    tutup_form($link);
+                            // $list = array();
+                            // $list[] = array('val'=>'pending', 'cap'=>'Pending');
+                            // $list[] = array('val'=>'success', 'cap'=>'Success');
+                    // buat_combobox_biasa("Status","status",$list, $data['status']);
+                    buat_notag("Status :", $data['status'], 4);
+                    if ($data['status']=="success") {
+                        $confirm_query = $mysqli->query("SELECT * FROM konfirmasi_pembayaran WHERE id_pesanan='$data[id_pesanan]' ");
+                        $confirm_data = $confirm_query->fetch_array();
+                        buat_tag("Bukti Transfer :", '<img id="myImg" src="../images/bukti_tf/'.$confirm_data['bukti_transfer'].'" alt="Bukti Transfer" style="width:100%;max-width:300px">');
+                        echo "<hr>";
+                        echo'
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                                <div id="caption"></div>
+                            </div>
+                        ';
+                        echo'
+                        <script>
+                            // Get the modal
+                            var modal = document.getElementById("myModal");
+
+                            // Get the image and insert it inside the modal - use its "alt" text as a caption
+                            var img = document.getElementById("myImg");
+                            var modalImg = document.getElementById("img01");
+                            var captionText = document.getElementById("caption");
+                            img.onclick = function(){
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                            }
+
+                            // Get the <span> element that closes the modal
+                            var span = document.getElementsByClassName("close")[0];
+
+                            // When the user clicks on <span> (x), close the modal
+                            span.onclick = function() { 
+                            modal.style.display = "none";
+                            }
+                        </script>
+                        ';
+                    }
+                    // tutup_form($link);
         echo'                
                     
         ';
@@ -150,27 +194,18 @@ switch ($show) {
             ';
 
         echo '
+                    <a href="' . $link . '" class="btn btn-primary btn-icon-split" style="float: left!important;">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text">Kembali</span>
+                    </a>
                     </div>
+                    
                 </div>
             </div>
+            
         </section>';
     break;
-        
-    case "action":
-        $status	= $_POST['status'];
-  
-  
-        $query  = $mysqli->query ( "UPDATE pembelian SET
-        status    = '$status'
-        WHERE id_pesanan='$_POST[id]'
-        ");
-        
-        header('location:'.$link);
-        break;
-    
-    case "delete":
-        $query = $mysqli->query("DELETE FROM pembelian WHERE id_pesanan='$_GET[id]'");
-        header('location:'.$link);
-        break;
 }
 ?>

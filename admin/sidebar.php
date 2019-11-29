@@ -68,6 +68,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="?content=konfirmasi-pembayaran" class="nav-link">
+                <i class="nav-icon fas fa-clipboard-list"></i>
+                <p>
+                    Konfirmasi Pembayaran
+                </p>
+            </a>
+        </li> 
+        <li class="nav-item">
             <a href="?content=setting" class="nav-link">
                 <i class="nav-icon fas fa-fw fa-cog"></i>
                 <p>

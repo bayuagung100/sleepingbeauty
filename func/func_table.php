@@ -41,6 +41,24 @@ function isi_datatables($no, $data, $link, $id, $edit = true, $hapus = true)
 		</tr>';
 }
 
+function detail_datatables($no, $data, $link, $id)
+{
+	echo '
+				<tr>
+					<td>' . $no . '</td>';
+	foreach ($data as $dt) {
+		echo '<td>' . $dt . '</td>';
+	}
+	echo '<td>';
+
+		echo '<a href="' . $link . '&show=form&id=' . $id . '" class="btn btn-success btn-sm">
+				<i class="fas fa-eye"></i> Detail
+			</a> ';
+	
+	echo '</td>
+		</tr>';
+}
+
 function isi_table_sukarelawan($no, $data, $link, $id, $edit = true)
 {
 	echo '

@@ -5,7 +5,7 @@ $content = isset($_GET['content']) ? $_GET['content'] : 'dashboard';
 $kosong = true;
 
 //Menampilkan file sesuai nilai $content
-$page = array('dashboard','setting','product','category-product','color-product','size-product','material-product','pesanan');
+$page = array('dashboard','setting','product','category-product','color-product','size-product','material-product','pesanan','konfirmasi-pembayaran');
 foreach($page as $pg){
 	if($content == $pg and $kosong){
 		include 'page-content/'.$pg.'.php';

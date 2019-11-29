@@ -759,7 +759,8 @@ $query2 = $mysqli->query("SELECT * FROM pembelian WHERE id_session='$sesi' AND i
 $jml_item = mysqli_num_rows($query2);
 while ($data2 = $query2->fetch_array()) {
       $ip = $data2['id_product'];
-      $qty = $data2['qty'];
+	  $qty = $data2['qty'];
+	  $size = $data['size'];
       
       $total_mail=0;
       $totalberat_mail=0;
@@ -794,7 +795,7 @@ while ($data2 = $query2->fetch_array()) {
 																	<img src="'.$set['url'].'images/source/'.$pi.'" alt="'.$pn.'"
 																		title="'.$pn.'"
 																		style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
-																		width="200" height="160"></td>
+																		width="200" height="200"></td>
 															</tr>
 														</table>
 													</td>
@@ -817,6 +818,13 @@ while ($data2 = $query2->fetch_array()) {
 															<tr style="border-collapse:collapse;">
 																<td align="center" height="10"
 																	style="padding:0;Margin:0;"></td>
+															</tr>
+															<tr style="border-collapse:collapse;">
+																<td align="left" style="padding:0;Margin:0;">
+																	<p
+																		style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:18px;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;line-height:27px;color:#333333;">
+																		<b>Size: </b><strong>'.$size.'</strong></p>
+																</td>
 															</tr>
 															<tr style="border-collapse:collapse;">
 																<td align="left" style="padding:0;Margin:0;">

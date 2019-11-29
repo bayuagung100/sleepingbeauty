@@ -918,7 +918,7 @@ $message .= '
 																<td align="right" style="padding:0;Margin:0;">
 																	<p
 																		style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:18px;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;line-height:27px;color:#333333;text-align:left;">
-																		<strong>Total : '.$total.'</strong></p>
+																		<strong>Total : '.rupiah($total).'</strong></p>
 																</td>
 															</tr>
 														</table>

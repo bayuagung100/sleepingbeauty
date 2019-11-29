@@ -641,7 +641,7 @@ $message .= '
 																			ID Pesanan: <b>'.$id_pesanan.'</b></li>
 																		<li
 																			style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:18px;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;line-height:27px;Margin-bottom:15px;color:#333333;">
-																			Tanggal: <b>'.tgl_indonesia($maildata['date']).'</b></li>
+																			Tanggal: <b>'.tgl_indonesia($td).'</b></li>
 																		<li
 																			style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:18px;font-family:courier new, courier, lucida sans typewriter, lucida typewriter, monospace;line-height:27px;Margin-bottom:15px;color:#333333;">
 																			Nama: <b>'.$name.'</b></li>

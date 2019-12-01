@@ -715,6 +715,46 @@ while ($mdata = $modal_query->fetch_array()) {
 </script>
 <script>
     $(document).ready(function() {
+        $('#daftar_provinsi').change(function() {
+
+        //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+        var province_id = $('#daftar_provinsi').val();
+        var province = $('#daftar_provinsi option:selected').attr('province');
+        console.log(province_id);
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/member/cek-kabupaten.php',
+                data: {
+                    'province_id': province_id,
+                    'province': province
+                },
+                success: function(data) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#daftar_kabupaten").html(data);
+                }
+            });
+        });
+        $('#daftar_kabupaten').change(function() {
+
+        //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+        var city_id = $('#daftar_kabupaten').val();
+        var city_name = $('#daftar_kabupaten option:selected').attr('city_name');
+            console.log(city_id);
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo $set['url']; ?>ajax/member/cek-kecamatan.php',
+                data: {
+                    'city_id': city_id,
+                    'city_name': city_name
+                },
+                success: function(data) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#daftar_kecamatan").html(data);
+                }
+            });
+        });
         $('#provinsi').change(function() {
 
             //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
@@ -791,6 +831,7 @@ while ($mdata = $modal_query->fetch_array()) {
         $('#buat-pesanan').on('click', function() {
             var sesi = $('#sesi').val();
             var id_pesanan = $('#id_pesanan').val();
+            var id_user = $('#id_user').val();
             var subtotal = $('#subtotal').val();
             var weight = $('#weight').val();
             var name = $('#name').val();
@@ -834,6 +875,7 @@ while ($mdata = $modal_query->fetch_array()) {
                     data: {
                         'sesi' : sesi,
                         'id_pesanan' : id_pesanan,
+                        'id_user' : id_user,
                         'subtotal' : subtotal,
                         'weight' : weight,
                         'name' : name,
@@ -900,6 +942,24 @@ function invalid(name) {
 
     });
 </script>
+
+<!-- DataTables -->
+<script src="<?php echo $set['url']; ?>/js/jquery.dataTables.js"></script>
+<script src="<?php echo $set['url']; ?>/js/dataTables.bootstrap4.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+
 
 <!-- JavaScript -->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

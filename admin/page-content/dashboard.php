@@ -11,61 +11,79 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>150</h3>
+          <div class="col-12 col-sm-6 col-md-3">
+          <a href="?content=product">
+            <div class="info-box">
+              
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-camera-retro"></i></span>
 
-            <p>Product</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Product</span>
+                <span class="info-box-number">
+                <?php
+                $query = $mysqli->query("SELECT * FROM product");
+                $jml = $query->num_rows;
+                echo $jml;
+                ?>
+                </span>
+              </div>
+              
+            </div>
+            </a>
           </div>
-          <div class="icon">
-            <i class="ion ion-bag"></i>
-          </div>
-          <a href="?content=product" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
+          <div class="col-12 col-sm-6 col-md-3">
+          <a href="?content=pesanan">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
-            <p>Category Product</p>
+              <div class="info-box-content">
+                <span class="info-box-text">Pesanan</span>
+                <span class="info-box-number">
+                <?php
+                $query = $mysqli->query("SELECT count(DISTINCT id_pesanan) as total FROM pembelian");
+                $jml = $query->fetch_assoc();
+                echo $jml['total'];
+                ?>
+                </span>
+              </div>
+            </div>
+          </a>
           </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="?content=category-product" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3>44</h3>
+          <div class="clearfix hidden-md-up"></div>
 
-            <p>Pesanan</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-          <a href="?content=pesanan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
+          <div class="col-12 col-sm-6 col-md-3">
+          <a href="?content=konfirmasi-pembayaran">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3>65</h3>
+              <div class="info-box-content">
+                <span class="info-box-text">Konfirmasi Pembayaran</span>
+                <span class="info-box-number">
+                <?php
+                $query = $mysqli->query("SELECT * FROM konfirmasi_pembayaran WHERE konfirmasi='N' ");
+                $jml = $query->num_rows;
+                echo $jml;
+                ?>
+                </span>
+              </div>
+            </div>
+          </a>
+          </div>
 
-            <p>Konfirmasi Pembayaran</p>
+          <div class="col-12 col-sm-6 col-md-3">
+          <a href="?content=member">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Members</span>
+                <span class="info-box-number">0</span>
+              </div>
+            </div>
+          </a>
           </div>
-          <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-          </div>
-          <a href="?content=konfirmasi-pembayaran" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
     </div>
   </div>
 </section>

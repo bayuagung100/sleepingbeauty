@@ -3,6 +3,7 @@ include "../admin/config.php";
 include "../func/func_date.php";
 $sesi = $_POST['sesi'];
 $id_pesanan = $_POST['id_pesanan'];
+$id_user = $_POST['id_user'];
 $subtotal = $_POST['subtotal'];
 $weight = $_POST['weight'];
 $name = $_POST['name'];
@@ -41,6 +42,7 @@ while ($data = mysqli_fetch_array ($query)) {
         (
             id_session,
             id_pesanan,
+			id_user,
             id_product,
             size,
             color,
@@ -67,6 +69,7 @@ while ($data = mysqli_fetch_array ($query)) {
         (
             '$sesi',
             '$id_pesanan',
+			'$id_user',
             '$tip',
             '$tz',
             '$tc',

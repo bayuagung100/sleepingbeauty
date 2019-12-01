@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $set['url']; ?>css/util.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $set['url']; ?>css/main.css">
     <!--===============================================================================================-->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo $set['url']; ?>css/dataTables.bootstrap4.css">
     <!-- CSS -->
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <style>
@@ -72,7 +74,7 @@
                         #SleepingBeauty
                     </div>
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        <a href="<?php echo $set['url']; ?>member" class="flex-c-m trans-04 p-lr-25">
                             My Account
                         </a>
                     </div>
@@ -197,7 +199,7 @@
                         <!-- <a href="#" class="flex-c-m p-lr-10 trans-04">
                             Help & FAQs
                         </a> -->
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                        <a href="<?php echo $set['url']; ?>member" class="flex-c-m p-lr-10 trans-04">
                             My Account
                         </a>
                     </div>

@@ -15,6 +15,7 @@ $query = mysqli_query($mysqli, "SELECT * FROM temp_cart WHERE id_session='$sesi'
 $data = mysqli_fetch_array($query);
 
 $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_product'];
+
 ?>
 <!-- Shoping Cart -->
 <form class="bg0 p-t-75 p-b-85">
@@ -108,38 +109,238 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                 
             </div>
             ';
-            
-            echo'
+            ?>
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                 <div class="bor10 p-lr-40 p-t-30 p-b-40">
                     <h4 class="mtext-109 cl2 p-b-30">
                         Penagihan & Pengiriman
                     </h4>
-                    <input type="hidden" id="sesi" name="sesi" value="'.$sesi.'">
-                    <input type="hidden" id="id_pesanan" name="id_pesanan" value="'.$id_pesanan.'">
-                    <input type="hidden" id="subtotal" name="subtotal" value="'.$total.'">
-                    <input type="hidden" id="weight" name="weight" value="'.$totalberat.'">
+                    <input type="hidden" id="sesi" name="sesi" value="<?php echo $sesi;?>">
+                    <input type="hidden" id="id_pesanan" name="id_pesanan" value="<?php echo $id_pesanan?>">
+                    <input type="hidden" id="id_user" name="id_user" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id'];}?>">
+                    <input type="hidden" id="subtotal" name="subtotal" value="<?php echo $total;?>">
+                    <input type="hidden" id="weight" name="weight" value="<?php echo $totalberat?>">
                     <p>Nama Lengkap (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input id="name" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="name" placeholder="Nama Lengkap" required>
+                        <input id="name" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="name" placeholder="Nama Lengkap" value="<?php if(isset($_SESSION['nama_lengkap'])){echo $_SESSION['nama_lengkap'];}?>" required>
                     </div>
                     <p>Email (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input id="email" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="email" placeholder="example@email.com" required>
+                        <input id="email" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="text" name="email" placeholder="example@email.com" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];}?>" required>
                     </div>
                     <p>No Hp / WhatsApp (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input id="tel" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="tel" name="tel" placeholder="081xxxxxxxxx" required>
+                        <input id="tel" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="tel" name="tel" placeholder="081xxxxxxxxx" value="<?php if(isset($_SESSION['no_hp'])){echo $_SESSION['no_hp'];}?>" required>
                     </div>
                     <p>Alamat Lengkap (Wajib diisi)</p>
                     <div class="bor8 m-b-20 how-pos4-parent">
-                    <textarea id="address" class="stext-111 cl2 plh3 size-textarea p-lr-28 p-tb-25" name="address" placeholder="Nama jalan dan nomor rumah"></textarea>
+                    <textarea id="address" class="stext-111 cl2 plh3 size-textarea p-lr-28 p-tb-25" name="address" placeholder="Nama jalan dan nomor rumah" required><?php if(isset($_SESSION['alamat'])){echo $_SESSION['alamat'];}?></textarea>
                     </div>
-                    <p>Provinsi (Wajib diisi)</p>
-                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">';
-                    $curl = curl_init();
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
+                    
+                    <?php 
+                    if (isset($_SESSION['log'])==0){
+                        echo '
+                        <p>Provinsi (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        ';
+                        $curl = curl_init();
+                        curl_setopt_array($curl, array(
+                            CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 30,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "GET",
+                            CURLOPT_HTTPHEADER => array(
+                                "key: 772b99fdc5a62231d8a83772580ae8fa"
+                            ),
+                        ));
+
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
+                        curl_close($curl);
+                        $listProv = array();
+
+                        if ($err) {
+                            echo "cURL Error #:" . $err;
+                        } else {
+                            $arrayResponse = json_decode($response, true);
+
+                            $tempListProv = $arrayResponse['rajaongkir']['results'];
+
+                            foreach ($tempListProv as $value) {
+                                $prov = new stdClass();
+                                $prov->id = $value['province_id'];
+                                $prov->nama = $value['province'];
+
+                                array_push($listProv, $prov);
+                            }
+
+                            echo '
+                            <select id="provinsi" class="js-select2" name="provinsi" required>
+                                <option value="">Pilih Porvinsi</option>
+                            ';
+                            foreach ($listProv as $prov) {
+                                echo '
+                                <option value="' . $prov->id . '" province="' . $prov->nama . '">' . $prov->nama . '</option>
+                                ';
+                            }
+                            echo '
+                                </select>
+                            ';
+                        }
+                        echo'
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        
+                        <p>Kota / Kabupaten (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                            <select id="kabupaten" class="js-select2" name="kabupaten" required>
+                                <option value="">Pilih Kota / Kabupaten</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+
+                        <p>Kecamatan (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                            <select id="kecamatan" class="js-select2" name="kecamatan" required>
+                                <option value="">Pilih Kecamatan</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        ';
+                    } else {
+                        echo '
+                        <p>Provinsi (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        ';
+                        $curl = curl_init();
+                        curl_setopt_array($curl, array(
+                            CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 30,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "GET",
+                            CURLOPT_HTTPHEADER => array(
+                                "key: 772b99fdc5a62231d8a83772580ae8fa"
+                            ),
+                        ));
+
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
+                        curl_close($curl);
+                        $listProv = array();
+
+                        if ($err) {
+                            echo "cURL Error #:" . $err;
+                        } else {
+                            $arrayResponse = json_decode($response, true);
+
+                            $tempListProv = $arrayResponse['rajaongkir']['results'];
+
+                            foreach ($tempListProv as $value) {
+                                $prov = new stdClass();
+                                $prov->id = $value['province_id'];
+                                $prov->nama = $value['province'];
+
+                                array_push($listProv, $prov);
+                            }
+
+                            echo '
+                            <select id="provinsi" class="js-select2" name="provinsi" required>
+                                <option value="">Pilih Porvinsi</option>
+                            ';
+                            foreach ($listProv as $prov) {
+                                $select = $prov->id == $_SESSION['idprov'] ? 'selected' : '';
+                                echo '
+                                <option value="' . $prov->id . '" province="' . $prov->nama . '" '.$select.'>' . $prov->nama . '</option>
+                                ';
+                            }
+                            echo '
+                                </select>
+                            ';
+                        }
+                        echo'
+                            <div class="dropDownSelect2"></div>
+                        </div>';
+                        
+                        echo'
+                        <p>Kota / Kabupaten (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        ';
+                        $curl2 = curl_init();
+                        curl_setopt_array($curl2, array(
+                            CURLOPT_URL => "https://pro.rajaongkir.com/api/city",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 30,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "GET",
+                            CURLOPT_HTTPHEADER => array(
+                                "key: 772b99fdc5a62231d8a83772580ae8fa"
+                            ),
+                        ));
+
+                        $response2 = curl_exec($curl2);
+                        $err2 = curl_error($curl2);
+                        curl_close($curl2);
+                        $listKab = array();
+
+                        if ($err2) {
+                            echo "cURL Error #:" . $err2;
+                        } else {
+                            $arrayResponse2 = json_decode($response2, true);
+
+                            $tempListKab = $arrayResponse2['rajaongkir']['results'];
+
+                            foreach ($tempListKab as $value) {
+                                $kab = new stdClass();
+                                $kab->id = $value['city_id'];
+                                $kab->nama = $value['city_name'];
+                                $kab->type = $value['type'];
+
+                                array_push($listKab, $kab);
+                            }
+
+                            echo '
+                            <select id="kabupaten" class="js-select2" name="kabupaten" required>
+                                <option value="">Pilih Kota / Kabupaten</option>
+                            ';
+                            foreach ($listKab as $kab) {
+                                $select = $kab->id == $_SESSION['idkab'] ? 'selected' : '';
+                                echo '
+                                <option value="' . $kab->id . '" city_name="' . $kab->nama . ' ('.$kab->type.')" '.$select.'>' . $kab->nama . ' ('.$kab->type.')</option>
+                                ';
+                            }
+                            echo '
+                                </select>
+                            ';
+                        }
+                            // <select id="kabupaten" class="js-select2" name="kabupaten" required>
+                            //     <option value="">Pilih Kota / Kabupaten</option>
+                            // </select>
+                        echo'
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        ';
+
+                        echo'
+                        <p>Kecamatan (Wajib diisi)</p>
+                        <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        ';
+
+                        echo '
+                        <select id="kecamatan" class="js-select2" name="kecamatan" required>
+                            <option value="">Pilih Kecamatan</option>
+                        ';
+
+                        $curl = curl_init();
+                        curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$_SESSION[idkab]",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -149,70 +350,45 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                         CURLOPT_HTTPHEADER => array(
                             "key: 772b99fdc5a62231d8a83772580ae8fa"
                         ),
-                    ));
+                        ));
 
-                    $response = curl_exec($curl);
-                    $err = curl_error($curl);
-                    curl_close($curl);
-                    $listProv = array();
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
 
-                    if ($err) {
+                        curl_close($curl);
+
+                        if ($err) {
                         echo "cURL Error #:" . $err;
-                    } else {
-                        $arrayResponse = json_decode($response, true);
-
-                        $tempListProv = $arrayResponse['rajaongkir']['results'];
-
-                        foreach ($tempListProv as $value) {
-                            $prov = new stdClass();
-                            $prov->id = $value['province_id'];
-                            $prov->nama = $value['province'];
-
-                            array_push($listProv, $prov);
+                        } else {
+                        //echo $response;
                         }
 
-                        echo '
-                        <select id="provinsi" class="js-select2" name="provinsi" required>
-                            <option value="">Pilih Porvinsi</option>
-                        ';
-                        foreach ($listProv as $prov) {
-                            echo '
-                            <option value="' . $prov->id . '" province="' . $prov->nama . '">' . $prov->nama . '</option>
-                            ';
+                        $data = json_decode($response, true);
+                        for ($i=0; $i < count($data['rajaongkir']['results']); $i++) { 
+                            $select = $data['rajaongkir']['results'][$i]['subdistrict_id'] == $_SESSION['idkec'] ? 'selected' : '';
+                            echo "<option value='".$data['rajaongkir']['results'][$i]['subdistrict_id']."' subdistrict_name='".$data['rajaongkir']['results'][$i]['subdistrict_name']."' ".$select.">".$data['rajaongkir']['results'][$i]['subdistrict_name']."</option>";
                         }
+
                         echo '
                             </select>
                         ';
+                        
+                            // <select id="kecamatan" class="js-select2" name="kecamatan" required>
+                            //     <option value="">Pilih Kecamatan</option>
+                            // </select>
+                        echo '
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        ';
                     }
-                    echo'
-                        <div class="dropDownSelect2"></div>
-                    </div>
-
-                    <p>Kota / Kabupaten (Wajib diisi)</p>
-                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                        <select id="kabupaten" class="js-select2" name="kabupaten" required>
-                            <option value="">Pilih Kota / Kabupaten</option>
-                        </select>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-
-                    <p>Kecamatan (Wajib diisi)</p>
-                    <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                        <select id="kecamatan" class="js-select2" name="kecamatan" required>
-                            <option value="">Pilih Kecamatan</option>
-                        </select>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-
+                    ?>
                     <p>Kode Pos (Wajib diisi)</p>
                     <div class="bor8 bg0 m-b-22">
-                        <input id="postcode" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Kode Pos" required>
+                        <input id="postcode" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Kode Pos" value="<?php if(isset($_SESSION['kode_pos'])){echo $_SESSION['kode_pos'];}?>" required>
                     </div>
                 </div>
             </div>
-            ';
-
-            echo '
+            
             <div class="col-lg-7 col-xl-5 m-lr-auto m-b-50">
                 <div class="bor10 p-lr-40 p-t-30 p-b-40">
                     <h4 class="mtext-109 cl2 p-b-30">
@@ -228,7 +404,7 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
 
                         <div class="size-209">
                             <span class="mtext-110 cl2">
-                                '.rupiah($total).'<br>@'.$totalberat.' gram
+                                <?php echo rupiah($total).'<br>@'.$totalberat.' gram';?>
                             </span>
                         </div>
                     </div>
@@ -282,6 +458,7 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                             </span>
 
                             <p id="payment-method">';
+                            <?php
                             $bankquery = $mysqli->query("SELECT * FROM rekening_bank");
                             while ($databank = $bankquery->fetch_array()) {
                                 $id = $databank['id'];
@@ -299,9 +476,10 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                             }
                                 
 
-                        echo '
+                            echo '
                             </p>
-                            
+                            ';
+                            ?>
 
                         </div>
                     </div>
@@ -325,7 +503,7 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                     </div>
                 </div>
             </div>
-            ';
+            <?php
             } else {
             echo '
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">

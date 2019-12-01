@@ -4041,3 +4041,52 @@ input.num-product::-webkit-inner-spin-button {
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+
+.menu {
+    margin-bottom: 50px;
+}
+
+.menu-title {
+    font-size: 18px;
+    font-weight: 400;
+    color:
+        #272727;
+    position: relative;
+}
+
+.menu-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -19px;
+    width: 40px;
+    height: 2px;
+    background-color:
+        #f0ba14;
+    margin-bottom: 10px;
+}
+
+.menu ul li a {
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    color: #272727;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 51px;
+    transition: .2s ease;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lihat-btn {
+    background-color:#222;
+    color:white;
+    padding: 10px;
+}

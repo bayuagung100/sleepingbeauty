@@ -153,6 +153,17 @@ switch ($show) {
         WHERE id_pesanan='$_POST[id]'
         ");
 
+        $pemquery = $mysqli->query("SELECT * FROM pembelian WHERE id_pesanan='$_POST[id]' ");
+        while ($pemdata = $pemquery->fetch_array()) {
+            $id_product = $pemdata['id_product'];
+            $qty = $pemdata['qty'];
+
+                $query3 = $mysqli->query("UPDATE product SET
+                product_stock = product_stock-$qty
+                WHERE id='$id_product'
+                ");         
+        }
+
         
         header('location:'.$link);
       break;

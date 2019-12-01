@@ -95,6 +95,13 @@ switch ($show) {
                     buat_rowtabstutup();
                     buat_tag("Alamat :", $data['address']);
                     echo "<hr>";
+                    $service = $data['service'];
+                    $pecah = explode("-",$service);
+                    $ekspedisi = ucwords($pecah[0]);
+                    $layanan = $pecah[1];
+                    $ongkir = $pecah[2];
+                    buat_tag("Pengiriman :", $ekspedisi." (".$layanan.")");
+                    echo "<hr>";
 
                             // $list = array();
                             // $list[] = array('val'=>'pending', 'cap'=>'Pending');
@@ -151,13 +158,15 @@ switch ($show) {
                 <th>Product</th>
                 <th class="text-center">Ukuran</th>
                 <th class="text-center">Qty</th>
+                <th class="text-center">Berat</th>
                 <th class="text-right">Price</th>
                 <th class="text-right">Total</th>
             </tr>
             </thead>
             <tbody>';
             
-            $total=0;
+            $subtotal = 0;
+            $total_berat = 0;
             $pemquery = $mysqli->query("SELECT * FROM pembelian WHERE id_pesanan='$_GET[id]'");
                     while ($dpem = $pemquery->fetch_array()) {
                         $ip = $dpem['id_product'];
@@ -168,25 +177,39 @@ switch ($show) {
                         while ($data = $pquery->fetch_array()) {
                             $np = $data['product_name'];
                             $harga = $data['product_price'];
+                            $berat = $data['product_weight'];
                             
+                            $tb = $qty*$berat;
+                            $total_berat += $tb;
                             $sub = $qty*$harga;
-                        $total += $sub;
+                            $subtotal += $sub;
                         echo'
                             <tr>
                                 <td>'.$np.'</td>
                                 <td align="center">'.$size.'</td>
-                                <td align="right">'.$qty.'</td>
+                                <td align="center">'.$qty.'</td>
+                                <td align="center">@'.$berat.' gram</td>
                                 <td align="right">'.rupiah($harga).'</td>
-                                <td align="right">'.rupiah($sub).'</td>
+                                <td align="right">'.rupiah($sub).'<br>@'.$tb.' gram</td>
                             </tr>
                         ';
                         }
                     }
             echo'
             <tr>
-                <td colspan="3"></td>
+                <td colspan="4"></td>
+                <td align="right"><b>Subtotal</b></td>
+                <td align="right"><b>'.rupiah($subtotal).'</b></td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td align="right"><b>Ongkir</b></td>
+                <td align="right"><b>'.rupiah($ongkir).'</b></td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
                 <td align="right"><b>Total</b></td>
-                <td align="right"><b>'.rupiah($total).'</b></td>
+                <td align="right"><b>'.rupiah($subtotal+$ongkir).'<br>@'.$total_berat.' gram</br></td>
             </tr>
             </tbody>
             </table>

@@ -15,29 +15,37 @@ RewriteRule ^terimakasih$ index.php?content=terimakasih [L]
 RewriteRule ^konfirmasi-pembayaran$ index.php?content=konfirmasi-pembayaran [L]
 RewriteRule ^konfirmasi-pembayaran/(.*)$ index.php?content=konfirmasi-pembayaran&id_pesanan=$1 [L]
 
+RewriteRule ^member$ index.php?content=member/index [L]
+RewriteRule ^member/dashboard$ index.php?content=member/dashboard [L]
+RewriteRule ^member/pesanan$ index.php?content=member/pesanan [L]
+RewriteRule ^member/pesanan/(.*)$ index.php?content=member/pesanan&id_pesanan=$1 [L]
+RewriteRule ^member/daftar$ index.php?content=member/daftar&pesan=$1 [L]
+RewriteRule ^member/lupa-password$ index.php?content=member/lupa-password [L]
+RewriteRule ^member/logout$ index.php?content=member/logout [L]
 
 
-RewriteRule ^tentang-kami$ index.php?content=tentang-kami [L]
 
-RewriteRule ^program/(.*)$ index.php?content=program&id=$1 [L]
-RewriteRule ^program$ index.php?content=program-all [L]
+#RewriteRule ^tentang-kami$ index.php?content=tentang-kami [L]
 
-RewriteRule ^acara/(.*)$ index.php?content=acara&id=$1 [L]
-RewriteRule ^acara$ index.php?content=acara-all [L]
+#RewriteRule ^program/(.*)$ index.php?content=program&id=$1 [L]
+#RewriteRule ^program$ index.php?content=program-all [L]
 
-RewriteRule ^blog/(.*)$ index.php?content=blog&id=$1 [L]
-RewriteRule ^blog$ index.php?content=blog-all [L]
+#RewriteRule ^acara/(.*)$ index.php?content=acara&id=$1 [L]
+#RewriteRule ^acara$ index.php?content=acara-all [L]
 
-RewriteRule ^donasi$ donasi.php [L]
-RewriteRule ^terimakasih$ terimakasih.php [L]
-RewriteRule ^auth$ auth.php [L]
-RewriteRule ^logout$ logout.php [L]
+#RewriteRule ^blog/(.*)$ index.php?content=blog&id=$1 [L]
+#RewriteRule ^blog$ index.php?content=blog-all [L]
 
-RewriteRule ^sukarelawan$ index.php?content=sukarelawan/index [L]
-RewriteRule ^sukarelawan/dashboard$ index.php?content=sukarelawan/dashboard [L]
-RewriteRule ^sukarelawan/profile$ index.php?content=sukarelawan/profile [L]
-RewriteRule ^sukarelawan/profile/edit$ index.php?content=sukarelawan/profile-edit [L]
-RewriteRule ^sukarelawan/ubah-password$ index.php?content=sukarelawan/ubah-password [L]
+#RewriteRule ^donasi$ donasi.php [L]
+#RewriteRule ^terimakasih$ terimakasih.php [L]
+#RewriteRule ^auth$ auth.php [L]
+#RewriteRule ^logout$ logout.php [L]
+
+#RewriteRule ^sukarelawan$ index.php?content=sukarelawan/index [L]
+#RewriteRule ^sukarelawan/dashboard$ index.php?content=sukarelawan/dashboard [L]
+#RewriteRule ^sukarelawan/profile$ index.php?content=sukarelawan/profile [L]
+#RewriteRule ^sukarelawan/profile/edit$ index.php?content=sukarelawan/profile-edit [L]
+#RewriteRule ^sukarelawan/ubah-password$ index.php?content=sukarelawan/ubah-password [L]
 
 
 </IfModule>

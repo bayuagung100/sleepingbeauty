@@ -1,7 +1,8 @@
 <?php 
 include "website/header.php";
 if (isset($_GET['token'])) {
-    $cekquery = $mysqli->query("SELECT * FROM reset_password WHERE token='$_GET[token]' ");
+    
+    $cekquery = $mysqli->query("SELECT * FROM reset_password WHERE token='$_GET[token]' AND DATEDIFF(CURDATE(), expired) ");
     $cek = $cekquery->num_rows;
     $datacek = $cekquery->fetch_array();
     $email = $datacek['email'];
@@ -67,7 +68,12 @@ if (isset($_GET['token'])) {
     </div>
     <?php
     } else {
-        echo "tidak ada";
+        echo '
+        <script>
+        alert("Token expired, Silahkan coba lagi.");
+        window.location = "' . $set['url'] . 'member/lupa-password";
+        </script>
+        ';
     }
 } else {
 ?>

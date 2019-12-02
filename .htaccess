@@ -22,6 +22,7 @@ RewriteRule ^member/pesanan/(.*)$ index.php?content=member/pesanan&id_pesanan=$1
 RewriteRule ^member/profile$ index.php?content=member/profile [L]
 RewriteRule ^member/daftar$ index.php?content=member/daftar&pesan=$1 [L]
 RewriteRule ^member/lupa-password$ index.php?content=member/lupa-password [L]
+RewriteRule ^member/lupa-password/(.*)$ index.php?content=member/lupa-password&token=$1 [L]
 RewriteRule ^member/logout$ index.php?content=member/logout [L]
 
 

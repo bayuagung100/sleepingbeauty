@@ -185,7 +185,7 @@ if(isset($_SESSION['log'])==1){
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input id="ulangi_password" class="stext-111 cl2 plh3 size-116 p-l-10 p-r-10" type="password" name="ulangi_password" placeholder="Ulangi Password" required>
                     </div>
-                    <button type="submit" name="daftar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04">Masuk</button>
+                    <button type="submit" name="daftar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04">Daftar</button>
                     <br>
                     <p>Sudah punya akun? <a href="<?php echo $set['url']; ?>member">Login disini.</a></p>
                 </form>

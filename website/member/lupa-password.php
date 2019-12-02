@@ -508,7 +508,7 @@ if (isset($_GET['token'])) {
                                                             style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px;">
                                                             <span class="es-button-border"
                                                                 style="border-style:solid;border-color:#7C72DC;background:#D7B6A3;border-width:1px;display:inline-block;border-radius:2px;width:auto;"><a
-                                                                href="'.$set['url'].'/member/lupa-password/'.$token.'" class="es-button" target="_blank"
+                                                                href="'.$set['url'].'member/lupa-password/'.$token.'" class="es-button" target="_blank"
                                                                 style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, helvetica neue, arial, verdana, sans-serif;font-size:20px;color:#FFFFFF;border-style:solid;border-color:#D7B6A3;border-width:15px 25px 15px 25px;display:inline-block;background:#D7B6A3;border-radius:2px;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;">Reset
                                                                 Password</a></span></td>
                                                         </tr>

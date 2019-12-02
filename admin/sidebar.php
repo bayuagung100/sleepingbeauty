@@ -76,6 +76,14 @@
             </a>
         </li> 
         <li class="nav-item">
+            <a href="?content=member" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Member
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="?content=setting" class="nav-link">
                 <i class="nav-icon fas fa-fw fa-cog"></i>
                 <p>

@@ -15,7 +15,7 @@ if(isset($_SESSION['log'])==1){
                 <hr/>
                 <?php
                 if(isset($_POST['daftar'])){
-                    $nama_lengkap = $_POST['nama_lengkap'];
+                    $nama_lengkap = ucwords($_POST['nama_lengkap']);
                     $no_hp = $_POST['no_hp'];
                     $provinsi = $_POST['provinsi'];
                     $kabupaten = $_POST['kabupaten'];

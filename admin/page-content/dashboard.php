@@ -79,7 +79,13 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Members</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">
+                <?php
+                $query = $mysqli->query("SELECT * FROM member ");
+                $jml = $query->num_rows;
+                echo $jml;
+                ?>
+                </span>
               </div>
             </div>
           </a>
@@ -87,3 +93,32 @@
     </div>
   </div>
 </section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Daftar Data Pesanan</h3>    
+      </div>
+        <?php
+        $link = "?content=pesanan";
+        buka_datatables(array("ID Pesanan","Tanggal","Nama","Email","Hp","Status"));
+        $no = 1;
+        $query = $mysqli->query("SELECT DISTINCT id_pesanan, date, nama, email, tel, status FROM pembelian ORDER BY id DESC");
+        while ($data = $query->fetch_array()) {
+            $id_pesanan = $data['id_pesanan'];
+            $tanggal = $data['date'];
+            $nama = $data['nama'];
+            $email = $data['email'];
+            $hp = $data['tel'];
+            $status = ucwords($data['status']);
+            detail_datatables($no, array($id_pesanan, $tanggal,$nama,$email,$hp,$status), $link, $id_pesanan);
+            $no++;
+        }
+
+        tutup_datatables(array("ID Pesanan","Tanggal","Nama","Email","Hp","Status"));
+echo '
+    </div>
+  </div>
+</section>
+    ';

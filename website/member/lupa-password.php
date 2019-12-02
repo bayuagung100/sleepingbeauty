@@ -10,7 +10,7 @@ include "website/header.php";
                     <p>Anda dapat mengatur ulang kata sandi Anda di sini</p>
                 </div>
                 <hr/>
-                <div class="alert alert-danger" role="alert"><b>Sorry!</b> Bukti Transfer yang Anda upload tidak didukung.</div>
+                <!-- <div class="alert alert-danger" role="alert"><b>Sorry!</b> Bukti Transfer yang Anda upload tidak didukung.</div> -->
                 <form action="<?php echo $set['url']; ?>member/auth" method="post">
                     <input type="hidden" name="auth" value="lupa-password">
                     <p>Email (Wajib diisi)</p>

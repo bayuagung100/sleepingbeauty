@@ -40,7 +40,7 @@ if(isset($_SESSION['log'])==0){
             </div>
             <div class="col-lg-8 col-xl-8 m-lr-auto m-b-50">
                 <h3 class="p-b-20">Selamat datang, <?php echo $_SESSION['nama_lengkap'];?></h3>
-                <p>Di panel ini Anda dapat melihat pesanan terbaru Anda, mengelola pengiriman dan alamat penagihan Anda, dan mengedit kata sandi dan detail akun Anda.</p>
+                <p>Di panel ini Anda dapat melihat pesanan terbaru Anda, mengelola pengiriman dan alamat penagihan Anda, dan detail akun Anda.</p>
                 <div class="row">
                     <div class="col-lg-4 col-xl-4">
                         <a href="<?php echo $set['url'];?>member/pesanan" class="m-t-30 flex-c-m stext-101 cl0 size-107 bg3 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">

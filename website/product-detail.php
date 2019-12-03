@@ -364,7 +364,10 @@ if($pic6!=""){
 										</span>
 
 										<span class="stext-102 cl6 size-206">
-											<?php echo $bahan; ?>
+											<?php 
+											$materialquery = $mysqli->query("SELECT * FROM material_product WHERE id='$bahan' ");
+											$bdata = $materialquery->fetch_array();
+											echo $bdata['material_name']; ?>
 										</span>
 									</li>
 

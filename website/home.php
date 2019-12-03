@@ -173,27 +173,23 @@
 
                 echo'
                 <div class="col-md-6 col-xl-3 p-b-30 m-lr-auto">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="'.$set['url'].'images/source/'.$icon.'" alt="'.$name.'">
-
-                        <a href="'.$set['url'].'category/'.$url.'" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-                                <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    '.$name.'
-                                </span>
-
-                                <!-- <span class="block1-info stext-102 trans-04">
-                                        Spring 2018
-                                    </span> -->
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <a href="'.$set['url'].'category/'.$url.'" >
+                            <img src="'.$set['url'].'images/source/'.$icon.'" alt="'.$name.'">
+                            </a>
+                            <a href="'.$set['url'].'category/'.$url.'" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                     Shop Now
-                                </div>
+                                </a>
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="'.$set['url'].'category/'.$url.'" class="block1-name ltext-102 trans-04 p-b-8">
+                                    '.$name.'
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 ';

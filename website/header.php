@@ -38,6 +38,9 @@
     <!--===============================================================================================-->
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo $set['url']; ?>css/dataTables.bootstrap4.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Tangerine&display=swap" rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <style>

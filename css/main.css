@@ -4090,3 +4090,19 @@ input.num-product::-webkit-inner-spin-button {
     color:white;
     padding: 10px;
 }
+
+.tangerine-category{
+    font-family: 'Tangerine', cursive;
+    font-weight: bold;
+    font-size: 40px;
+}
+.tangerine-product{
+    font-family: 'Tangerine', cursive;
+    font-weight: bold;
+    font-size: 30px;
+}
+.tangerine-product-detail{
+    font-family: 'Tangerine', cursive;
+    font-weight: bold;
+    font-size: 35px;
+}

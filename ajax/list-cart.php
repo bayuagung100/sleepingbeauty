@@ -43,7 +43,7 @@ if ($ceking > 0) {
                                     </div>
     
                                     <div class="header-cart-item-txt p-t-8">
-                                        <a href="' . $set['url'] . 'product/' . $url . '" class="header-cart-item-name hov-cl1 trans-04">
+                                        <a href="' . $set['url'] . 'product/' . $url . '" class=" tangerine-product header-cart-item-name hov-cl1 trans-04">
                                             ' . $nama . '
                                         </a>
     

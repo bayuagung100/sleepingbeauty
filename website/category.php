@@ -45,7 +45,7 @@
 
                                 <div class="block2-txt flex-w flex-t p-t-14">
                                     <div class="block2-txt-child1 flex-col-l ">
-                                        <a href="'.$set['url'].'category/'.$url.'" class="block1-name ltext-102 trans-04 p-b-8">
+                                        <a href="'.$set['url'].'category/'.$url.'" class="tangerine-category block1-name ltext-102 trans-04 p-b-8">
                                             '.$name.'
                                         </a>
                                     </div>

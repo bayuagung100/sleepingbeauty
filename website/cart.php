@@ -82,7 +82,7 @@ $id_pesanan = str_replace('-', '', $data['date']) . $data['id'] . $data['id_prod
                                         <img src="'.$gambar1.'" alt="'.$nama.'">
                                     </div>
                                 </td>
-                                <td class="column-2">'.$nama.'<br>@'.$berat.' gram</td>
+                                <td class="column-2"><span class="tangerine-product">'.$nama.'</span><br>@'.$berat.' gram</td>
                                 <td class="column-3">'.rupiah($harga).'</td>
                                 <td class="column-4">
                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">

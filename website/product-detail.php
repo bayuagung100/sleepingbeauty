@@ -170,7 +170,7 @@ if($pic6!=""){
 
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
-					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+					<h4 class="tangerine-product-detail mtext-105 cl2 js-name-detail p-b-14">
 						<span id="product"><?php echo $nama; ?></span>
 					</h4>
 
@@ -482,7 +482,7 @@ if($pic6!=""){
 
 								<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
-										<a href="' . $set['url'] . 'product/' . $url . '" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<a href="' . $set['url'] . 'product/' . $url . '" class="tangerine-product stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 											' . $nama . '
 										</a>
 

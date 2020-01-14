@@ -1,9 +1,9 @@
 <?php
 //server hosting
-$servername = "localhost";
-$username = "u328098603_sb";
-$password = "lalaLand123";
-$database = "u328098603_sb"; 
+// $servername = "localhost";
+// $username = "u328098603_sb";
+// $password = "lalaLand123";
+// $database = "u328098603_sb"; 
 
 //local-server
 // $servername = "sql261.main-hosting.eu";
@@ -12,10 +12,10 @@ $database = "u328098603_sb";
 // $database = "u328098603_sb";
 
 //localpc
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "sleepingbeauty";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "sleepingbeauty";
  
 // Create connection
 $mysqli = new mysqli($servername, $username, $password, $database);
